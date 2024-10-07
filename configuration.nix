@@ -58,7 +58,7 @@
     layout = "at";
     variant = "nodeadkeys";
     options = "caps:escape";
-};
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -123,6 +123,20 @@
     obsidian
     mullvad-vpn
     vscode
+];
+
+# XRemap
+services.xremap = {
+  /* NOTE: since this sample configuration does not have any DE, xremap needs to be started manually by systemctl --user start xremap */
+  serviceMode = "user";
+  userName = "tyron";
+};
+        # Modmap for single key rebinds
+services.xremap.config.modmap = [
+  {
+    name = "Global";
+    remap = { "CapsLock" = "Esc"; }; # globally remap CapsLock to Esc
+  }
 ];
 
   # Lid Closing
