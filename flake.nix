@@ -9,18 +9,23 @@
     };
 
   };
-  outputs = inputs@{ self, nixpkgs, ... }: {
-    # NOTE: 'nixos' is the default hostname set by the installer
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      # NOTE: Change this to aarch64-linux if you are on ARM
-      system = "x86_64-linux";
-      modules = [ 
-        ./configuration.nix 
-        
-        # XRemap Flake config:
-        inputs.xremap-flake.nixosModules.default
+  outputs =
+    inputs@{ self, nixpkgs, ... }:
+    {
+      # NOTE: 'nixos' is the default hostname set by the installer
+      nixosConfigurations.yoga = nixpkgs.lib.nixosSystem {
+        # NOTE: Change this to aarch64-linux if you are on ARM
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./configuration.nix
+
+          # XRemap Flake config:
+          inputs.xremap-flake.nixosModules.default
 
         ];
+      };
     };
-  };
 }

@@ -19,17 +19,18 @@
     "nix-command"
     "flakes"
   ];
+
   # Custom Config Location
   nix.nixPath = [
-    "nixos-config=~/nixos-config/"
-    #"nixpkgs=${inputs.nixpkgs}"
+    "nix-config=~/nixos-config"
+    "nixpkgs=${inputs.nixpkgs}"
   ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "yoga"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -116,6 +117,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     nixd # Nix Language Server
+    nil
     nixfmt-rfc-style
     zsh
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
