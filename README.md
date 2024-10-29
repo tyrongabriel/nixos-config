@@ -1,2 +1,3 @@
 # nixos-config
-Nixos Configuration
+
+Nixos Configuration, Heavily inspired by Vimjoyers nixconf

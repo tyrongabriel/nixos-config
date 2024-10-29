@@ -123,6 +123,9 @@
     obsidian
     mullvad-vpn
     vscode
+    jetbrains.idea-ultimate
+    jdk21
+    nh
 ];
 
 # XRemap
