@@ -2,17 +2,28 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
   # Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   # Custom Config Location
-  nix.nixPath = [ "nixos-config=~/nixos-config/" ];
+  nix.nixPath = [
+    "nixos-config=~/nixos-config/"
+    #"nixpkgs=${inputs.nixpkgs}"
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -86,9 +97,12 @@
   users.users.tyron = {
     isNormalUser = true;
     description = "Tyron Gabriel";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -101,6 +115,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    nixd # Nix Language Server
+    nixfmt-rfc-style
     zsh
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -126,21 +142,30 @@
     jetbrains.idea-ultimate
     jdk21
     nh
-];
+  ];
 
-# XRemap
-services.xremap = {
-  /* NOTE: since this sample configuration does not have any DE, xremap needs to be started manually by systemctl --user start xremap */
-  serviceMode = "user";
-  userName = "tyron";
-};
-        # Modmap for single key rebinds
-services.xremap.config.modmap = [
-  {
-    name = "Global";
-    remap = { "CapsLock" = "Esc"; }; # globally remap CapsLock to Esc
-  }
-];
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/home/tyron/nixos-config";
+  };
+
+  # XRemap
+  services.xremap = {
+    # NOTE: since this sample configuration does not have any DE, xremap needs to be started manually by systemctl --user start xremap
+    serviceMode = "user";
+    userName = "tyron";
+  };
+  # Modmap for single key rebinds
+  services.xremap.config.modmap = [
+    {
+      name = "Global";
+      remap = {
+        "CapsLock" = "Esc";
+      }; # globally remap CapsLock to Esc
+    }
+  ];
 
   # Lid Closing
   #services.logind = {

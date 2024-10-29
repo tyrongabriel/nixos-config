@@ -1,29 +1,34 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
-    xremapConfig = {
-        # Configure your xremap settings here
-        # For example, to remap the 'a' key to 'b', you can use:
-        # "a" = "b";
-    };
+  xremapConfig = {
+    # Configure your xremap settings here
+    # For example, to remap the 'a' key to 'b', you can use:
+    # "a" = "b";
+  };
 in
 {
-    options = {
-        xremap = {
-            enable = mkEnableOption "Enable xremap";
-            config = mkOption {
-                type = types.attrs;
-                default = xremapConfig;
-                description = "xremap configuration";
-            };
-        };
+  options = {
+    xremap = {
+      enable = lib.mkEnableOption "Enable xremap";
+      config = lib.mkOption {
+        #type = types.attrs;
+        default = xremapConfig;
+        description = "xremap configuration";
+      };
     };
+  };
 
-    config = {
-        programs.xremap = {
-            enable = config.xremap.enable;
-            config = config.xremap.config;
-            package = pkgs.xremap;
-        };
+  config = {
+    programs.xremap = {
+      enable = config.xremap.enable;
+      config = config.xremap.config;
+      package = pkgs.xremap;
     };
+  };
 }
