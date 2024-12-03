@@ -38,7 +38,7 @@
 };
 
   # Bootloader.
-  #boot.loader.systemd-boot.enable = true; # Default Bootloader
+  boot.loader.systemd-boot.enable = false; # Default Bootloader
   #boot.loader.efi.canTouchEfiVariables = true;
   boot.loader = {
     efi = {
