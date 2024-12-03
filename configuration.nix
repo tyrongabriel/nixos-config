@@ -26,9 +26,44 @@
     "nixpkgs=${inputs.nixpkgs}"
   ];
 
+  system.autoUpgrade = {
+  enable = true;
+  flake = inputs.self.outPath;
+  flags = [
+    "--update-input"
+    "nixpkgs"
+  ];
+  dates = "daily";
+  randomizedDelaySec = "45min";
+};
+
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  #boot.loader.systemd-boot.enable = true; # Default Bootloader
+  #boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
+      efiSysMountPoint = "/boot";
+    };
+    grub = {
+      enable = true;
+      device = "nodev"; # No specific partition
+      useOSProber = true; # Autodetect windows
+      # despite what the configuration.nix manpage seems to indicate,
+      # as of release 17.09, setting device to "nodev" will still call
+      # `grub-install` if efiSupport is true
+      # (the devices list is not used by the EFI grub install,
+      # but must be set to some value in order to pass an assert in grub.nix)
+      #devices = [ "nodev" ];
+      efiSupport = true;
+      #enable = true;
+      # Breeze Grub theme
+      extraConfig = "set theme=($drive2)${pkgs.breeze-grub}/grub/themes/breeze/theme.txt";
+      splashImage = null;
+    };
+  };
+  time.hardwareClockInLocalTime = true; # For time format in windows dualboot
 
   networking.hostName = "yoga"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
