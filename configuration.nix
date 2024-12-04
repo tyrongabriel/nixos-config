@@ -44,7 +44,7 @@
     efi = {
       canTouchEfiVariables = true;
       # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
-      efiSysMountPoint = "/boot";
+      efiSysMountPoint = "/boot/efi";
     };
     grub = {
       enable = true;
@@ -59,7 +59,12 @@
       efiSupport = true;
       #enable = true;
       # Breeze Grub theme
-      extraConfig = "set theme=($drive2)${pkgs.breeze-grub}/grub/themes/breeze/theme.txt";
+      extraConfig = ''
+        set gfxmode=auto
+        set gfxpayload=auto
+        terminal_output gfxterm
+        set theme=($drive2)${pkgs.breeze-grub}/grub/themes/breeze/theme.txt
+      '';
       splashImage = null;
     };
   };
