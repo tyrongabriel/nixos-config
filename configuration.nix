@@ -27,15 +27,15 @@
   ];
 
   system.autoUpgrade = {
-  enable = true;
-  flake = inputs.self.outPath;
-  flags = [
-    "--update-input"
-    "nixpkgs"
-  ];
-  dates = "daily";
-  randomizedDelaySec = "45min";
-};
+    enable = true;
+    flake = inputs.self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+    ];
+    dates = "daily";
+    randomizedDelaySec = "45min";
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = false; # Default Bootloader
@@ -59,15 +59,71 @@
       efiSupport = true;
       #enable = true;
       # Breeze Grub theme
-      extraConfig = ''
-        set gfxmode=auto
-        set gfxpayload=auto
-        terminal_output gfxterm
-        set theme=($drive2)${pkgs.breeze-grub}/grub/themes/breeze/theme.txt
-      '';
+      #extraConfig = ''
+      #  GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+      #'';
+      gfxmodeEfi = "1920x1200x32";
+      #gfxpayloadEfi = "keep";
+      font = "${pkgs.fira-code}/share/fonts/truetype/FiraCode-VF.ttf";
+      fontSize = 26;
+
+      theme = (
+        pkgs.catppuccin-grub.override {
+          flavor = "mocha";
+        }
+      );
       splashImage = null;
+      timeoutStyle = "hidden";
+
     };
+
+    # Hide os choice -> shows when pressing button
+    timeout = 1;
   };
+
+  # Enable plymouth for smooth startup animation
+  boot = {
+    initrd.availableKernelModules = [
+      "amdgpu"
+      "simpledrm"
+    ];
+    plymouth = {
+      enable = true;
+      theme = "catppuccin-mocha";
+      themePackages = with pkgs; [
+        (catppuccin-plymouth.override {
+          variant = "mocha";
+        })
+        # By default we would install all themes wiki.nixos.org/wiki/Plymouth
+        #(adi1090x-plymouth-themes.override {
+        #  selected_themes = [ "rings" ];
+        #})
+      ];
+
+      extraConfig = ''
+        ShowDelay=0
+      '';
+
+    };
+
+    # Enable silent booting
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "vga=current"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+      "plymouth.use-simpledrm"
+      "vt.global_cursor_default=0"
+      "fbcon=nodefer"
+    ];
+  };
+  hardware.graphics.enable = true; # For plymouth to render instantly
   time.hardwareClockInLocalTime = true; # For time format in windows dualboot
 
   networking.hostName = "yoga"; # Define your hostname.
