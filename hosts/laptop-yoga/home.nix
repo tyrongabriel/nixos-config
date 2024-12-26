@@ -1,5 +1,8 @@
 { ... }:
 {
+  imports = [
+    ../../homeModules
+  ];
   home = {
     username = "tyron";
     homeDirectory = "/home/tyron";

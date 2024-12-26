@@ -58,7 +58,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = { inherit inputs; };
-                users.tyron = {
+                users."tyron" = {
                   imports = [
                     ./hosts/laptop-yoga/home.nix
                     inputs.catppuccin.homeManagerModules.catppuccin
