@@ -1,6 +1,0 @@
-{ ... }:
-{
-  imports = [
-    ./xremap.nix
-  ];
-}

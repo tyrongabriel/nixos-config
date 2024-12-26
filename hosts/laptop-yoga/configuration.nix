@@ -19,10 +19,16 @@
 
   config = {
 
-    custom.xremap.enable = true;
+    custom = {
+      # Enable xremap
+      xremap.enable = true;
+      xremap.remaps = {
+        "Capslock" = "Esc";
+      };
+    };
 
     networking.hostName = "yoga"; # Define your hostname.
-    networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
+    #networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
     # Configure network proxy if necessary
     # networking.proxy.default = "http://user:password@proxy:port/";
@@ -104,7 +110,6 @@
       brave
       discord
       bitwarden
-      synergy
       htop
       tmux
       curl

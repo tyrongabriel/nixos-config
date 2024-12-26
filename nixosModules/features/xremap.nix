@@ -3,11 +3,14 @@
   lib,
   ...
 }:
+let
+  cfg = config.custom.xremap;
+in
 {
-  options.custom = with lib; {
-    xremap.enable = mkEnableOption "Enable xremap";
-    xremap.remaps = mkOption {
-      type = types.attrsOf types.string;
+  options.custom.xremap = with lib; {
+    enable = mkEnableOption "Enable xremap";
+    remaps = mkOption {
+      type = with types; attrsOf str;
       default = {
         "Capslock" = "Esc";
       };
@@ -17,7 +20,7 @@
     };
   };
 
-  config = lib.mkIf config.custom.xremap.enable {
+  config = lib.mkIf cfg.enable {
     # XRemap
     services.xremap = {
       # NOTE: since this sample configuration does not have any DE, xremap needs to be started manually by systemctl --user start xremap
@@ -28,9 +31,7 @@
     services.xremap.config.modmap = [
       {
         name = "Global";
-        remap = {
-          "Capslock" = "Esc";
-        };
+        remap = cfg.remaps;
       }
     ];
   };

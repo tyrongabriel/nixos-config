@@ -24,19 +24,32 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+  #outputs =
+  # inputs@{
+  #   self,
+  #   nixpkgs,
+  #   nixpkgs-stable,
+  #   home-manager,
+  #   #nix-colors,
+  #   #chaotic,
+  #   stylix,
+  #   nix-vscode-extensions,
+  #   nixvim,
+  #   ...
+  # }:
   outputs =
-    inputs@{
-      self,
+    {
       nixpkgs,
-      nixpkgs-stable,
+      self,
       home-manager,
-      #nix-colors,
-      #chaotic,
       stylix,
-      nix-vscode-extensions,
-      nixvim,
       ...
-    }:
+    }@inputs:
+    let
+      # super simple boilerplate-reducing
+      # lib with a bunch of functions
+      myLib = import ./myLib/default.nix { inherit inputs; };
+    in
     {
       # NOTE: 'nixos' is the default hostname set by the installer
       nixosConfigurations = {
@@ -44,7 +57,7 @@
           # NOTE: Change this to aarch64-linux if you are on ARM
           system = "x86_64-linux";
           specialArgs = {
-            inherit self inputs;
+            inherit self inputs myLib;
           };
           modules = [
             ./hosts/laptop-yoga/configuration.nix

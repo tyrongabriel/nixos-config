@@ -1,5 +1,4 @@
+{ myLib, ... }:
 {
-  imports = [
-    ./alacritty.nix
-  ];
+  #imports = (myLib.filesIn ./features);
 }

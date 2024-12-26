@@ -8,7 +8,8 @@
     ];
     # Nix path
     nixPath = [
-      "nix-config=~/nixos-config"
+      #"nix-config=~/nixos-config"
+      "nix-config=${inputs.self.outPath}"
       "nixpkgs=${inputs.nixpkgs}"
     ];
   };
