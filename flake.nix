@@ -64,25 +64,37 @@
             # XRemap Flake config:
             inputs.xremap-flake.nixosModules.default
             inputs.catppuccin.nixosModules.catppuccin
-            home-manager.nixosModules.home-manager
             stylix.nixosModules.stylix
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = { inherit inputs; };
-                users."tyron" = {
-                  imports = [
-                    ./hosts/laptop-yoga/home.nix
-                    inputs.catppuccin.homeManagerModules.catppuccin
-                  ];
-                };
-              };
-            }
+            # home-manager.nixosModules.home-manager
+            # {
+            #   home-manager = {
+            #     useGlobalPkgs = true;
+            #     useUserPackages = true;
+            #     extraSpecialArgs = { inherit inputs; };
+            #     users."tyron" = {
+            #       imports = [
+            #         ./hosts/laptop-yoga/home.nix
+            #         inputs.catppuccin.homeManagerModules.catppuccin
+            #       ];
+            #     };
+            #   };
+            # }
           ];
         };
 
         #another host
+      };
+
+      homeConfigurations = {
+        "tyron" = home-manager.lib.homeManagerConfiguration {
+          # Note: I am sure this could be done better with flake-utils or something
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
+
+          modules = [
+            ./hosts/laptop-yoga/home.nix
+            inputs.catppuccin.homeManagerModules.catppuccin
+          ];
+        };
       };
     };
 }

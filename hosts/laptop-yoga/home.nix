@@ -12,4 +12,5 @@
       echi = "echo hi";
     };
   };
+  programs.home-manager.enable = true;
 }

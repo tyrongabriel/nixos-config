@@ -1,7 +1,7 @@
 { ... }:
 {
   # Set your time zone.
-  time.timeZone = "Europe/Vienna";
+  time.timeZone = "Europe/Vienna"; # "Europe/Vienna";
 
   # For time format in windows dualboot
   time.hardwareClockInLocalTime = true;
