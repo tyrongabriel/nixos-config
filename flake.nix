@@ -50,51 +50,67 @@
       # lib with a bunch of functions
       myLib = import ./myLib/default.nix { inherit inputs; };
     in
+    with myLib;
     {
       # NOTE: 'nixos' is the default hostname set by the installer
       nixosConfigurations = {
-        yoga = nixpkgs.lib.nixosSystem {
-          # NOTE: Change this to aarch64-linux if you are on ARM
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit self inputs myLib;
-          };
-          modules = [
-            ./hosts/laptop-yoga/configuration.nix
-            # XRemap Flake config:
-            inputs.xremap-flake.nixosModules.default
-            inputs.catppuccin.nixosModules.catppuccin
-            stylix.nixosModules.stylix
-            # home-manager.nixosModules.home-manager
-            # {
-            #   home-manager = {
-            #     useGlobalPkgs = true;
-            #     useUserPackages = true;
-            #     extraSpecialArgs = { inherit inputs; };
-            #     users."tyron" = {
-            #       imports = [
-            #         ./hosts/laptop-yoga/home.nix
-            #         inputs.catppuccin.homeManagerModules.catppuccin
-            #       ];
-            #     };
-            #   };
-            # }
-          ];
-        };
+        yoga = mkSystem ./hosts/laptop-yoga/configuration.nix [ inputs.xremap-flake.nixosModules.default ];
+        # yoga = nixpkgs.lib.nixosSystem {
+        #   # NOTE: Change this to aarch64-linux if you are on ARM
+        #   system = "x86_64-linux";
+        #   specialArgs = {
+        #     inherit self inputs myLib;
+        #   };
+        #   modules = [
+        #     ./hosts/laptop-yoga/configuration.nix
+        #     # XRemap Flake config:
+        #     inputs.xremap-flake.nixosModules.default
+        #     inputs.catppuccin.nixosModules.catppuccin
+        #     stylix.nixosModules.stylix
+        #     # home-manager.nixosModules.home-manager
+        #     # {
+        #     #   home-manager = {
+        #     #     useGlobalPkgs = true;
+        #     #     useUserPackages = true;
+        #     #     extraSpecialArgs = { inherit inputs; };
+        #     #     users."tyron" = {
+        #     #       imports = [
+        #     #         ./hosts/laptop-yoga/home.nix
+        #     #         inputs.catppuccin.homeManagerModules.catppuccin
+        #     #       ];
+        #     #     };
+        #     #   };
+        #     # }
+        #   ];
+        # };
 
         #another host
       };
 
       homeConfigurations = {
-        "tyron" = home-manager.lib.homeManagerConfiguration {
-          # Note: I am sure this could be done better with flake-utils or something
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
+        "tyron@yoga" = mkHome "x86_64-linux" ./hosts/laptop-yoga/home.nix;
+        #   "tyron" = home-manager.lib.homeManagerConfiguration {
+        #     # Note: I am sure this could be done better with flake-utils or something
+        #     pkgs = import nixpkgs { system = "x86_64-linux"; };
+        #     extraSpecialArgs = {
+        #       inherit
+        #         self
+        #         inputs
+        #         myLib
+        #         outputs
+        #         ;
+        #     };
+        #     modules = [
+        #       ./hosts/laptop-yoga/home.nix
+        #       inputs.catppuccin.homeManagerModules.catppuccin
+        #       outputs.homeManagerModules.default
+        #     ];
 
-          modules = [
-            ./hosts/laptop-yoga/home.nix
-            inputs.catppuccin.homeManagerModules.catppuccin
-          ];
-        };
+        #   };
       };
+
+      # Accessed via outputs.*.default
+      homeManagerModules.default = ./homeModules;
+      nixosModules.default = ./nixosModules;
     };
 }

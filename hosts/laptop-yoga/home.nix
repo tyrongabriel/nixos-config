@@ -1,15 +1,13 @@
-{ ... }:
+{ outputs, ... }:
 {
-  imports = [
-    ../../homeModules
-  ];
+  imports = [ outputs.homeManagerModules.default ];
   home = {
     username = "tyron";
     homeDirectory = "/home/tyron";
     stateVersion = "24.11";
 
     shellAliases = {
-      echi = "echo hi";
+      g = "git";
     };
   };
   programs.home-manager.enable = true;

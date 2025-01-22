@@ -15,27 +15,33 @@ rec {
   # ========================== Buildables ========================== #
 
   mkSystem =
-    config:
+    config: extraModules:
     inputs.nixpkgs.lib.nixosSystem {
+      #system = sys;
       specialArgs = {
         inherit inputs outputs myLib;
       };
       modules = [
         config
         outputs.nixosModules.default
-      ];
+      ] ++ extraModules;
     };
 
   mkHome =
     sys: config:
     inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = pkgsFor sys;
+      pkgs = import inputs.nixpkgs { system = "x86_64-linux"; }; # pkgsFor sys;
       extraSpecialArgs = {
         inherit inputs myLib outputs;
       };
       modules = [
         config
         outputs.homeManagerModules.default
+        # Extra config to use global and user packages
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+        }
       ];
     };
 
