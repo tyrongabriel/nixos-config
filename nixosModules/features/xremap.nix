@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.custom.xremap;
+  cfg = config.myNixos.xremap;
 in
 {
-  options.custom.xremap = with lib; {
+  options.myNixos.xremap = with lib; {
     enable = mkEnableOption "Enable xremap";
     remaps = mkOption {
       type = with types; attrsOf str;

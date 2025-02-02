@@ -24,6 +24,11 @@ rec {
       modules = [
         config
         outputs.nixosModules.default
+        # Extra config to use global and user packages
+        {
+          home-manager.useGlobalPkgs = true; # Tells Home-Manager to use systems nixpkgs
+          home-manager.useUserPackages = true; # Allows home-manager to install to /etc/profiles
+        }
       ] ++ extraModules;
     };
 
@@ -38,10 +43,10 @@ rec {
         config
         outputs.homeManagerModules.default
         # Extra config to use global and user packages
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-        }
+        #{
+        #  home-manager.useGlobalPkgs = true;
+        #  home-manager.useUserPackages = true;
+        #}
       ];
     };
 

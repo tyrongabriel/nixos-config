@@ -21,7 +21,7 @@
 
   config = {
 
-    custom = {
+    myNixos = {
       # Enable xremap
       xremap.enable = true;
       xremap.remaps = {
