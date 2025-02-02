@@ -1,4 +1,9 @@
-{ inputs, ... }:
+{
+  inputs,
+  lib,
+  outputs,
+  ...
+}:
 {
   nix = {
     # Flakes and nix Command
@@ -9,14 +14,14 @@
     # Nix path
     nixPath = [
       #"nix-config=~/nixos-config"
-      "nix-config=${inputs.self.outPath}"
+      "nix-config=/home/tyron/nixos-config"
       "nixpkgs=${inputs.nixpkgs}"
     ];
   };
 
   system.autoUpgrade = {
     enable = true;
-    flake = inputs.self.outPath;
+    flake = "/home/tyron/nixos-config";
     flags = [
       "--update-input"
       "nixpkgs"
@@ -24,4 +29,18 @@
     dates = "daily";
     randomizedDelaySec = "45min";
   };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # NH as an nixos-rebuild alternative
+  # May be configured further in home-manager
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    # Configured in home.nix homeDirectory
+    flake = "/home/tyron/nixos-config";
+  };
+  users.groups.uinput.gid = lib.mkForce 990; # To fix annoying warning not applying gid change of group...
 }

@@ -20,7 +20,6 @@
   options = { };
 
   config = {
-
     myNixos = {
       # Enable xremap
       xremap.enable = true;
@@ -31,10 +30,6 @@
 
     networking.hostName = "yoga"; # Define your hostname.
     #networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
-
-    # Configure network proxy if necessary
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
     # Enable networking
     networking.networkmanager.enable = true;
@@ -66,7 +61,7 @@
     services.printing.enable = true;
 
     # Enable sound with pipewire.
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
@@ -88,17 +83,12 @@
     users.users.tyron = {
       isNormalUser = true;
       description = "Tyron Gabriel";
+      initialPassword = "12345";
       extraGroups = [
         "networkmanager"
         "wheel"
       ];
-      packages = with pkgs; [
-        #  thunderbird
-      ];
     };
-
-    # Allow unfree packages
-    nixpkgs.config.allowUnfree = true;
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget
@@ -131,13 +121,6 @@
       jdk21
       nh
     ];
-
-    programs.nh = {
-      enable = true;
-      clean.enable = true;
-      clean.extraArgs = "--keep-since 4d --keep 3";
-      flake = "/home/tyron/nixos-config";
-    };
 
     # List services that you want to enable:
 

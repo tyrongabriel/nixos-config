@@ -54,7 +54,9 @@
     {
       # NOTE: 'nixos' is the default hostname set by the installer
       nixosConfigurations = {
-        yoga = mkSystem ./hosts/laptop-yoga/configuration.nix [ inputs.xremap-flake.nixosModules.default ];
+        yoga = mkSystem ./hosts/laptop-yoga/configuration.nix [
+          inputs.xremap-flake.nixosModules.default
+        ];
         # yoga = nixpkgs.lib.nixosSystem {
         #   # NOTE: Change this to aarch64-linux if you are on ARM
         #   system = "x86_64-linux";
@@ -112,5 +114,6 @@
       # Accessed via outputs.*.default
       homeManagerModules.default = ./homeModules;
       nixosModules.default = ./nixosModules;
+      flakePath = inputs.self.outPath;
     };
 }
