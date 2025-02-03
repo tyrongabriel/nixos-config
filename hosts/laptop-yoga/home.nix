@@ -11,6 +11,7 @@
     };
   };
   programs.home-manager.enable = true;
+  nixpkgs.config.allowUnfree = true;
   # Some local git config
   programs.git.userName = "tyrongabriel";
   programs.git.userEmail = "51530686+tyrongabriel@users.noreply.github.com";

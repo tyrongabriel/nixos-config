@@ -12,6 +12,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.ghostty.enable = true;
+    programs.ghostty = {
+      enable = lib.mkDefault true;
+      enableZshIntegration = lib.mkDefault true;
+    };
   };
 }

@@ -4,9 +4,6 @@
 
 {
   pkgs,
-  inputs,
-  myLib,
-  outputs,
   ...
 }:
 
@@ -88,7 +85,10 @@
         "networkmanager"
         "wheel"
       ];
+
+      shell = pkgs.zsh; # Default shell
     };
+    programs.zsh.enable = true;
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget
@@ -96,30 +96,14 @@
       nixd # Nix Language Server
       nil
       nixfmt-rfc-style
-      zsh
       neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      wget
-      brave
-      discord
-      bitwarden
-      htop
-      tmux
-      curl
-      wget
       git
       gcc
-      vlc
-      fzf
-      ripgrep
-      ncdu
-      nmap
       libinput
       obsidian
-      mullvad-vpn
       vscode
-      jetbrains.idea-ultimate
-      jdk21
       nh
+      zsh
     ];
 
     # List services that you want to enable:
