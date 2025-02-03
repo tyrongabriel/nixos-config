@@ -1,6 +1,7 @@
-{ outputs, config, ... }:
+{ outputs, pkgs, ... }:
 {
   imports = [ outputs.homeManagerModules.default ];
+  # Configure Home
   home = {
     username = "tyron";
     homeDirectory = "/home/tyron";
@@ -12,6 +13,7 @@
   };
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
+
   # Some local git config
   programs.git.userName = "tyrongabriel";
   programs.git.userEmail = "51530686+tyrongabriel@users.noreply.github.com";
@@ -20,4 +22,12 @@
   myHome = {
     bundles.general.enable = true;
   };
+
+  # Extra packages not defined in myHome
+  home.packages = with pkgs; [
+    brave
+    discord
+    bitwarden
+    nmap
+  ];
 }

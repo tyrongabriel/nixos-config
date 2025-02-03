@@ -1,7 +1,6 @@
 {
   inputs,
   lib,
-  outputs,
   ...
 }:
 {
@@ -15,7 +14,7 @@
     nixPath = [
       #"nix-config=~/nixos-config"
       "nix-config=/home/tyron/nixos-config"
-      "nixpkgs=${inputs.nixpkgs}"
+      "nixpkgs=${inputs.nixpkgs}" # Recommended for nixd
     ];
   };
 

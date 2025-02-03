@@ -16,17 +16,17 @@ in
     myHome = {
       ghostty.enable = lib.mkDefault true;
       zsh.enable = lib.mkDefault true;
+      btop.enable = lib.mkDefault true;
+      nh.enable = lib.mkDefault true;
     };
 
+    # Extra Packages to install
     home.packages = with pkgs; [
       bottom
       bat
       zsh
       neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       wget
-      brave
-      discord
-      bitwarden
       htop
       btop
       tmux
@@ -37,7 +37,6 @@ in
       fzf
       ripgrep
       ncdu
-      nmap
       neofetch
     ];
   };

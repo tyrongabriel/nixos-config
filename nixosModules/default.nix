@@ -1,22 +1,10 @@
-#{ ... }:
-#{
-#  imports = [
-#    #./services
-#    #./bundles
-#    ./features
-#  ];
-#}
 {
-  pkgs,
-  config,
-  lib,
   inputs,
-  outputs,
   myLib,
   ...
 }:
 let
-  cfg = config.custom;
+  #cfg = config.myNixOS;
 
   # Taking all modules in ./features and adding enables to them
   #features = myLib.extendModules (name: {
