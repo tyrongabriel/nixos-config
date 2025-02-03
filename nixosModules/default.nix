@@ -36,14 +36,18 @@ let
   #    };
 
   features = (myLib.filesIn ./features);
+  bundles = (myLib.filesIn ./bundles);
 in
 #    configExtension = config: (lib.mkIf cfg.services.${name}.enable config);
 #  })
 #  (myLib.filesIn ./services);
 {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-  ] ++ features;
+  imports =
+    [
+      inputs.home-manager.nixosModules.home-manager
+    ]
+    ++ features
+    ++ bundles;
   #++ features
   #++ bundles
   #++ services;

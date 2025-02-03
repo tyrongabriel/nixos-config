@@ -25,7 +25,16 @@ in
       xremap.remaps = {
         "Capslock" = "Esc";
       };
+      stylix.enable = true;
+
+      # Set home manager
+      userName = "tyron";
+      userConfig = ./home.nix;
+      # userNixosConfig for further user conf
     };
+
+    # Set default editor
+    environment.variables.EDITOR = "nvim";
 
     # Enable CUPS to print documents.
     services.printing.enable = true;

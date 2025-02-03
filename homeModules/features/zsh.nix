@@ -25,7 +25,7 @@ in
       syntaxHighlighting.enable = lib.mkDefault true;
       oh-my-zsh = {
         enable = lib.mkDefault true;
-        theme = "robbyrussell";
+        theme = "lambda";
         plugins = [
           "git"
           "cp" # Progress bar cp

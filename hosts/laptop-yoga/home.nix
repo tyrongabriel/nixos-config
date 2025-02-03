@@ -12,7 +12,7 @@
     };
   };
   programs.home-manager.enable = true;
-  nixpkgs.config.allowUnfree = true;
+  #nixpkgs.config.allowUnfree = true;
 
   # Some local git config
   programs.git.userName = "tyrongabriel";

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   # Bootloader.
   boot.loader = {
@@ -7,7 +7,7 @@
       # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
       #efiSysMountPoint = "/boot/efi";
     };
-    grub = {
+    grub = lib.mkDefault {
       enable = true;
       device = "nodev"; # No specific partition
       useOSProber = true; # Autodetect windows
@@ -41,7 +41,7 @@
       "amdgpu"
       "simpledrm"
     ];
-    plymouth = {
+    plymouth = lib.mkDefault {
       enable = true;
       theme = "catppuccin-mocha";
       themePackages = with pkgs; [
