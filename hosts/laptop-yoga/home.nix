@@ -11,8 +11,12 @@
     };
   };
   programs.home-manager.enable = true;
-  programs.ghostty.enable = true;
   # Some local git config
   programs.git.userName = "tyrongabriel";
   programs.git.userEmail = "51530686+tyrongabriel@users.noreply.github.com";
+
+  # Configure myHome manager modules
+  myHome = {
+    bundles.general.enable = true;
+  };
 }

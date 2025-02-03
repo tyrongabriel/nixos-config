@@ -1,4 +1,0 @@
-{ ... }:
-{
-  programs.bottom.enable = true;
-}
