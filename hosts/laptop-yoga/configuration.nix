@@ -19,6 +19,11 @@ in
   options = { };
 
   config = {
+    # TIP FOREVER:
+    # do nix build nixpkgs#<package> to build a package
+    # cd into that result
+    # use nix run nixpkgs#eza -- --tree --level 3 to list package structure
+    # This displays folder structure! nice for fonts etc.
     myNixOS = {
       # Enable xremap
       xremap.enable = true;

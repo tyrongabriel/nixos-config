@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   # Bootloader.
   boot.loader = {
@@ -7,14 +12,16 @@
       # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
       #efiSysMountPoint = "/boot/efi";
     };
-    grub = lib.mkDefault {
+    grub = lib.mkForce {
+      # To override stylix to get a prettier bootloader
       enable = true;
       device = "nodev"; # No specific partition
       useOSProber = true; # Autodetect windows
       efiSupport = true;
       gfxmodeEfi = "2880x1800x32";
 
-      font = "${pkgs.fira-code}/share/fonts/truetype/FiraCode-VF.ttf";
+      font = "${config.stylix.fonts.monospace.package}/share/fonts/truetype/NerdFonts/JetBrainsMono/JetBrainsMonoNerdFontMono-Regular.ttf";
+      # "${pkgs.fira-code}/share/fonts/truetype/FiraCode-VF.ttf";
       fontSize = 26;
 
       # Catppuccin Theme
@@ -57,7 +64,6 @@
         ShowDelay=0
         Logo=
       '';
-
     };
 
     # Enable silent booting

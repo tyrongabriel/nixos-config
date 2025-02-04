@@ -21,6 +21,7 @@ in
     # Stylix imported as flake
     stylix = {
       enable = lib.mkDefault true;
+      polarity = "dark";
       image = ../../wallpapers/waterfall.png;
 
       base16Scheme = {
