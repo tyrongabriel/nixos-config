@@ -31,12 +31,12 @@
     "ssh.g0.pp" = {
       hostname = "g0.complang.tuwien.ac.at";
       user = "p12326136";
-      identityFile = "./ssh/id_ed25519";
+      identityFile = "~/.ssh/id_ed25519";
     };
     "g0.pp" = {
       hostname = "g0.complang.tuwien.ac.at";
       user = "gitolite3";
-      identityFile = "./ssh/pp/id_rsa";
+      identityFile = "~/.ssh/pp/id_rsa";
     };
   };
 
