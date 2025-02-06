@@ -20,6 +20,7 @@ in
       nh.enable = lib.mkDefault true;
       git.enable = lib.mkDefault true;
       yazi.enable = lib.mkDefault true;
+      ssh.enable = lib.mkDefault true;
     };
 
     # Extra Packages to install
