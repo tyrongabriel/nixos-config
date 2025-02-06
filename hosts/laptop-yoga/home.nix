@@ -1,4 +1,9 @@
-{ outputs, pkgs, ... }:
+{
+  outputs,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [ outputs.homeManagerModules.default ];
   # Configure Home
@@ -10,6 +15,10 @@
       #FLAKE = "${config.home.homeDirectory}/nixos-config"; # Not Working
       #FUCK = "HI";
     };
+    # pointerCursor = lib.mkDefault {
+    #   gtk.enable = true;
+    #   x11.enable = true;
+    # };
   };
   programs.home-manager.enable = true;
   #nixpkgs.config.allowUnfree = true;
@@ -21,6 +30,7 @@
   # Configure myHome manager modules
   myHome = {
     bundles.general.enable = true;
+    bundles.gnome-desktop.enable = true;
   };
 
   # Extra packages not defined in myHome

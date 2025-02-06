@@ -18,6 +18,9 @@ in
       enableZshIntegration = true;
       # Extra settings
       settings = {
+        manager = {
+          linemode = "mtime";
+        };
         # Configure opener
         # opener = {
         #   # Editor list

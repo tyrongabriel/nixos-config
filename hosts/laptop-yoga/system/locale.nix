@@ -20,4 +20,11 @@
     LC_TELEPHONE = "de_AT.UTF-8";
     LC_TIME = "de_AT.UTF-8";
   };
+
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "at";
+    variant = "nodeadkeys";
+    options = "caps:escape";
+  };
 }

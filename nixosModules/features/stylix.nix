@@ -10,7 +10,7 @@ let
 in
 {
   imports = [
-    inputs.stylix.nixosModules.stylix
+    inputs.stylix.nixosModules.stylix # Import flake to get stylix module
   ];
 
   options.myNixOS.stylix = with lib; {
@@ -60,7 +60,7 @@ in
 
         sizes = {
           applications = 12;
-          terminal = 15;
+          terminal = 12;
           desktop = 10;
           popups = 10;
         };
@@ -73,6 +73,18 @@ in
 
       autoEnable = true;
 
+      # See https://github.com/NixOS/nixpkgs/blob/88a55dffa4d44d294c74c298daf75824dc0aafb5/pkgs/by-name/bi/bibata-cursors/package.nix#L61
+      # For available cursor names
+      cursor.name = "Bibata-Modern-Ice";
+      cursor.package = pkgs.bibata-cursors;
+      cursor.size = 24;
+
+    };
+    # Explaination:
+    # https://blogs.kde.org/2024/10/09/cursor-size-problems-in-wayland-explained/
+    environment.variables = lib.mkForce {
+      # Fixes scaling in electron apps, which use X11 while we are in wayland
+      XCURSOR_SIZE = config.stylix.cursor.size * 2;
     };
   };
 }

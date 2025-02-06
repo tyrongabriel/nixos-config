@@ -25,6 +25,8 @@ in
     # use nix run nixpkgs#eza -- --tree --level 3 to list package structure
     # This displays folder structure! nice for fonts etc.
     myNixOS = {
+      # Enable gnome desktop
+      bundles.gnome-desktop.enable = true;
       # Enable xremap
       xremap.enable = true;
       xremap.remaps = {
@@ -55,6 +57,7 @@ in
       vscode
       nh
       zsh
+      tlp
     ];
 
     # This value determines the NixOS release from which the default
