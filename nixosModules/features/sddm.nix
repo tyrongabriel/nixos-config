@@ -8,7 +8,7 @@ let
   cfg = config.myNixOS.sddm;
 in
 {
-  option.myNixOS.sddm = {
+  options.myNixOS.sddm = {
     enable = lib.mkEnableOption "Enable SDDM";
   };
 
