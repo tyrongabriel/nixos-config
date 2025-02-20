@@ -24,15 +24,13 @@ in
       })
     ];
 
-    services.xserver = {
+    services.displayManager.sddm = lib.mkForce {
       enable = true;
-      displayManager = {
-        sddm = {
-          enable = lib.mkDefault true;
-          theme = "catppuccin-mocha";
-          package = pkgs.kdePackages.sddm;
-        };
-      };
+      enableHidpi = true;
+      wayland.enable = true;
+      theme = "catppuccin-mocha";
+      package = pkgs.kdePackages.sddm;
     };
+
   };
 }

@@ -41,6 +41,8 @@ in
       ripgrep
       ncdu
       neofetch
+
+      onlyoffice-bin
     ];
   };
 }

@@ -44,6 +44,8 @@
   myHome = {
     bundles.general.enable = true;
     bundles.gnome-desktop.enable = true;
+    #bundles.hyprland-desktop.enable = true;
+    #bundles.plasma6-desktop.enable = true;
   };
 
   # Extra packages not defined in myHome

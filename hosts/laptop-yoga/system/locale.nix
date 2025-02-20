@@ -21,6 +21,7 @@
     LC_TIME = "de_AT.UTF-8";
   };
 
+  console.useXkbConfig = true;
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "at";

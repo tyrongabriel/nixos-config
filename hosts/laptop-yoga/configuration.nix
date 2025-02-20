@@ -27,6 +27,8 @@ in
     myNixOS = {
       # Enable gnome desktop
       bundles.gnome-desktop.enable = true;
+      #bundles.hyprland-desktop.enable = true;
+      #bundles.plasma6-desktop.enable = true;
       # Enable xremap
       xremap.enable = true;
       xremap.remaps = {

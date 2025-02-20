@@ -27,8 +27,9 @@ in
             # If the extension you want to enable is packaged in nixpkgs,
             # you can easily get its UUID by accessing its extensionUuid
             # field (look at the following example).
+            appindicator.extensionUuid
             blur-my-shell.extensionUuid
-            status-icons.extensionUuid
+            #status-icons.extensionUuid
             space-bar.extensionUuid
             window-is-ready-remover.extensionUuid
             # Alternatively, you can manually pass UUID as a string.
@@ -54,9 +55,10 @@ in
     home.packages = with pkgs.gnomeExtensions; [
       # ...
       blur-my-shell
-      status-icons
+      #status-icons
       space-bar
       window-is-ready-remover
+      appindicator
     ];
   };
 }

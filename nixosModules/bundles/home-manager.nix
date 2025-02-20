@@ -36,7 +36,6 @@ in
 
   config = {
     programs.zsh.enable = true;
-
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;

@@ -70,6 +70,7 @@
     consoleLogLevel = 0;
     initrd.verbose = false;
     kernelParams = [
+      "profile"
       "quiet"
       "splash"
       "boot.shell_on_fail"
