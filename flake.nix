@@ -35,6 +35,7 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-stable,
       self,
       home-manager,
       stylix,
