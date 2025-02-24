@@ -16,5 +16,12 @@ in
       enable = lib.mkDefault true;
       enableZshIntegration = lib.mkDefault true;
     };
+
+    # xdg.mimeApps.defaultApplications = {
+    #   "x-scheme-handler/ssh" = [ "com.mitchellh.ghostty.desktop" ];
+    #   "x-scheme-handler/telnet" = [ "com.mitchellh.ghostty.desktop" ];
+    #   "application/x-terminal-emulator" = [ "com.mitchellh.ghostty.desktop" ];
+    # };
+
   };
 }
