@@ -40,6 +40,7 @@ in
       userName = "tyron";
       userConfig = ./home.nix;
       # userNixosConfig for further user conf
+      # spacedrive.enable = true;
     };
 
     # Set default editor

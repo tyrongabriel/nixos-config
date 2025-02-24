@@ -10,6 +10,7 @@ in
     # https://mynixos.com/home-manager/options/programs.thunderbird
     programs.thunderbird = {
       enable = true;
+      profiles = { }; # Need to set atleast a "null" value
     };
   };
 }
