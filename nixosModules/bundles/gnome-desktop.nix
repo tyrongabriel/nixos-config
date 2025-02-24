@@ -40,6 +40,8 @@ in
     #     gnome-initial-setup
     #   ]);
     programs.dconf.enable = true;
+    # GDM Profile picture
+    services.accounts-daemon.enable = true;
     environment.systemPackages = with pkgs; [
       gnome-tweaks
     ];

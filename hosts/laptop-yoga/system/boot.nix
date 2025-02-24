@@ -91,7 +91,7 @@
   hardware.graphics.enable = true; # For plymouth to render instantly
 
   # Hibernation
-  powerManagement.enable = true;
+  powerManagement.enable = lib.mkDefault true;
 
   # Lid behaviour
   services.logind = {
