@@ -21,6 +21,7 @@ in
       git.enable = lib.mkDefault true;
       yazi.enable = lib.mkDefault true;
       ssh.enable = lib.mkDefault true;
+      thunderbird = lib.mkDefault true;
     };
 
     # Extra Packages to install
