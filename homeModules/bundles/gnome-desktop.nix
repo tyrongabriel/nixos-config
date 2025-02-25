@@ -10,9 +10,80 @@ in
 {
   options.myHome.bundles.gnome-desktop = {
     enable = lib.mkEnableOption "Enable GNOME Desktop customization";
+    autostartPrograms = lib.mkOption {
+      description = "A list of program packages with names to autostart.";
+      type =
+        with pkgs.lib.types;
+        listOf (submodule {
+          options = {
+            pkg = lib.mkOption {
+              type = package;
+              description = "Package to be launched";
+            };
+            name = lib.mkOption {
+              type = str;
+              description = "Name of the .desktop file inside of the package ({pkg}/share/appliactions/{name}.desktop)";
+            };
+            extraArguments = lib.mkOption {
+              type = listOf str;
+              description = "List of extra configuration to the .desktop file";
+              default = [ ];
+            };
+            replaceArguments = lib.mkOption {
+              type = listOf (submodule {
+                options = {
+                  from = lib.mkOption {
+                    description = "String to be replaced with the 'to' attribute";
+                    type = str;
+                  };
+                  to = lib.mkOption {
+                    description = "String to replace the 'from' attribute";
+                    type = str;
+                  };
+                };
+              });
+              description = "List of configuration to be replaced in the .desktop file";
+              default = [ ];
+            };
+          };
+        });
+      default = [ ];
+    };
   };
 
   config = lib.mkIf cfg.enable {
+    # Autostart apps
+    # https://github.com/nix-community/home-manager/issues/3447
+    home.file =
+      {
+        ".face".source = ./../../images/catppuccin-pfp.png;
+      }
+      // builtins.listToAttrs (
+        map (
+          pkg:
+          let
+            # Read file content, concat the extra args
+            textContent =
+              (
+                if pkg.pkg ? dekstopItem then
+                  pkg.pkg.desktopItem.text
+                else
+                  builtins.readFile (pkg.pkg + "/share/applications/" + pkg.name + ".desktop")
+              )
+              + (builtins.concatStringsSep "\n" pkg.extraArguments);
+            replaceFroms = builtins.map (ra: ra.from) pkg.replaceArguments;
+            replaceTos = builtins.map (ra: ra.to) pkg.replaceArguments;
+          in
+          {
+            name = ".config/autostart/" + pkg.name + ".desktop";
+            value = {
+              # Replace the replace-args in the textContent
+              text = (builtins.replaceStrings replaceFroms replaceTos textContent);
+            };
+          }
+        ) cfg.autostartPrograms
+      );
+
     # https://determinate.systems/posts/declarative-gnome-configuration-with-nixos/
     # https://wiki.nixos.org/wiki/GNOME
     dconf = {
@@ -45,6 +116,7 @@ in
             # Alternatively, you can manually pass UUID as a string.
             #"blur-my-shell@aunetx"
             # ...
+            user-themes.extensionUuid
           ];
           always-show-log-out = true;
         };
@@ -86,9 +158,10 @@ in
       appindicator
       lock-keys
       dash-to-dock
+      user-themes
     ];
 
-    # Catppuccin icon/styling
+    # Catppuccin gtk styling
     gtk = lib.mkDefault {
       enable = true;
       theme = {
@@ -101,7 +174,7 @@ in
     };
 
     # Set profile Picture
-    home.file.".face".source = ./../../images/catppuccin-pfp.png;
+    #home.file.".face".source = ./../../images/catppuccin-pfp.png;
     # Copy that to GDM
     # systemd.user.services."gdm-profile-picture" = {
     #   Unit = {

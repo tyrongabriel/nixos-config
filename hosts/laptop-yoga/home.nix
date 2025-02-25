@@ -42,7 +42,25 @@
   # Configure myHome manager modules
   myHome = {
     bundles.general.enable = true;
-    bundles.gnome-desktop.enable = true;
+    bundles.gnome-desktop = {
+      enable = true;
+      autostartPrograms = [
+        {
+          pkg = pkgs.bitwarden;
+          name = "bitwarden";
+        }
+        {
+          pkg = pkgs.discord;
+          name = "discord";
+          replaceArguments = [
+            {
+              from = "Exec=Discord";
+              to = "Exec=discord --start-minimized";
+            }
+          ];
+        }
+      ];
+    };
     #bundles.hyprland-desktop.enable = true;
     #bundles.plasma6-desktop.enable = true;
   };
