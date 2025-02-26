@@ -35,7 +35,9 @@ in
         "Capslock" = "Esc";
       };
       stylix.enable = true;
-
+      appimage.enable = true;
+      nix-ld.enable = true;
+      steam.enable = true;
       # Set home manager
       userName = "tyron";
       userConfig = ./home.nix;

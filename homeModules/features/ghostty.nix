@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -22,6 +23,18 @@ in
     #   "x-scheme-handler/telnet" = [ "com.mitchellh.ghostty.desktop" ];
     #   "application/x-terminal-emulator" = [ "com.mitchellh.ghostty.desktop" ];
     # };
+    #xdg.mime.defaultApplications = {
+    #  "x-scheme-handler/terminal" = "ghostty.desktop";
+    #};
 
+    xdg.portal = {
+      enable = true; # Enable xdg-desktop-portal
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; # Adjust based on your environment
+    };
+
+    home.sessionVariables = {
+      TERMINAL = "ghostty";
+      XDG_TERMINAL_EMULATOR = "ghostty";
+    };
   };
 }

@@ -42,6 +42,7 @@
   # Configure myHome manager modules
   myHome = {
     profilePicture = ./../../images/catppuccin-pfp.png;
+    bundles.gaming.enable = true;
     bundles.general.enable = true;
     bundles.gnome-desktop = {
       enable = true;
