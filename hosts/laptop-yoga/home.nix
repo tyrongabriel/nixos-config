@@ -41,6 +41,7 @@
 
   # Configure myHome manager modules
   myHome = {
+    profilePicture = ./../../images/catppuccin-pfp.png;
     bundles.general.enable = true;
     bundles.gnome-desktop = {
       enable = true;

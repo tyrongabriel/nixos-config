@@ -56,7 +56,7 @@ in
     # https://github.com/nix-community/home-manager/issues/3447
     home.file =
       {
-        ".face".source = ./../../images/catppuccin-pfp.png;
+        ".face".source = config.myHome.profilePicture;
       }
       // builtins.listToAttrs (
         map (
@@ -91,6 +91,11 @@ in
 
       # Configure params
       settings = {
+        "org/gnome/login-screen" = {
+          # Need to turn path to a string for dconf!
+          logo = "${config.myHome.profilePicture}";
+        };
+
         "org/gnome/desktop/lockdown" = {
           disable-log-out = false;
           disable-user-switching = false;
