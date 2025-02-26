@@ -28,7 +28,7 @@ in
         telemetry = {
           metrics = false;
         };
-        #theme = "Catppuccin Mocha";
+        theme = lib.mkForce "Catppuccin Mocha";
         vim_mode = false;
         #ui_font_size = 16;
         #buffer_font_size = 16;
@@ -49,11 +49,9 @@ in
               diagnostic = {
                 suppress = [ "sema-extra-with" ];
               };
-            };
 
-            initialization_options = {
-              formatting = {
-                command = [ "nixfmt" ];
+              nixpkgs = {
+                expr = "import <nixpkgs> { }";
               };
 
               options = {
@@ -63,6 +61,12 @@ in
                 home-manager = {
                   expr = "(builtins.getFlake \"/home/tyron/nixos-config\").homeConfigurations.\"tyron@yoga\".options";
                 };
+              };
+            };
+
+            initialization_options = {
+              formatting = {
+                command = [ "nixfmt" ];
               };
 
             };
