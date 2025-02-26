@@ -28,7 +28,7 @@ in
         telemetry = {
           metrics = false;
         };
-        theme = "Catppuccin Mocha";
+        #theme = "Catppuccin Mocha";
         vim_mode = false;
         #ui_font_size = 16;
         #buffer_font_size = 16;
