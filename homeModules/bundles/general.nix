@@ -22,6 +22,7 @@ in
       yazi.enable = lib.mkDefault true;
       ssh.enable = lib.mkDefault true;
       thunderbird.enable = lib.mkDefault true;
+      zed-editor.enable = lib.mkDefault true;
     };
 
     # Extra Packages to install
