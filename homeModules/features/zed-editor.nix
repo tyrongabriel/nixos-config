@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -21,6 +20,15 @@ in
         "catppuccin"
         "catppuccin-icons"
       ];
+      userKeymaps = [
+        {
+          context = "Workspace";
+          bindings = {
+            "shift shift" = "file_finder::Toggle";
+          };
+        }
+      ];
+
       userSettings = {
         features = {
           copilot = true;
@@ -29,6 +37,12 @@ in
           metrics = false;
         };
         theme = lib.mkForce "Catppuccin Mocha";
+        icon_theme = {
+          mode = "system";
+          light = "Catppuccin Latte";
+          dark = "Catppuccin Mocha";
+        };
+
         vim_mode = false;
         #ui_font_size = 16;
         #buffer_font_size = 16;
