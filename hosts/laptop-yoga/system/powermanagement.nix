@@ -2,7 +2,8 @@
 {
   services.power-profiles-daemon.enable = lib.mkForce false; # Gnome uses this, we dont!
   #https://nixos.wiki/wiki/Laptop
-
+  # For gnome battery extension
+  security.polkit.enable = true;
   # Standard powersave
   powerManagement = {
     enable = true;

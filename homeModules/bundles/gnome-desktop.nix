@@ -117,13 +117,162 @@ in
             space-bar.extensionUuid
             window-is-ready-remover.extensionUuid
             #lock-keys.extensionUuid
-            dash-to-dock.extensionUuid
+            #dash-to-dock.extensionUuid
+            dash-to-panel.extensionUuid
             # Alternatively, you can manually pass UUID as a string.
             #"blur-my-shell@aunetx"
             # ...
             user-themes.extensionUuid
+            arcmenu.extensionUuid
+            vitals.extensionUuid
+            clipboard-indicator.extensionUuid
+            rounded-window-corners-reborn.extensionUuid
+            #openweather-refined.extensionUuid
+            #battery-health-charging.extensionUuid
+            #gsconnect.extensionUuid
+            bluetooth-battery-meter.extensionUuid
           ];
           always-show-log-out = true;
+        };
+
+        "org/gnome/shell/extensions/vitals" = {
+          hide-icons = false;
+          hide-zeros = false;
+          hot-sensors = [ "_battery_time_left_" ];
+          icon-style = 1;
+          menu-centered = false;
+          position-in-panel = 2;
+          show-battery = true;
+          show-fan = false;
+          show-temperature = false;
+          show-memory = false;
+          show-processor = false;
+          show-network = false;
+          show-system = false;
+          update-time = 10;
+          use-higher-precision = true;
+        };
+
+        "org/gnome/shell/extensions/dash-to-panel" = {
+          animate-appicon-hover = true;
+          animate-appicon-hover-animation-extent = builtins.toJSON {
+            RIPPLE = 4;
+            PLANK = 4;
+            SIMPLE = 1;
+          };
+          appicon-margin = 4;
+          appicon-padding = 7;
+          appicon-style = "NORMAL";
+          dot-position = "BOTTOM";
+          group-apps = true;
+          hide-overview-on-startup = true;
+          hotkeys-overlay-combo = "TEMPORARILY";
+          intellihide = true;
+          intellihide-hide-from-windows = true;
+          isolate-workspaces = false;
+          leftbox-padding = -1;
+          leftbox-size = 0;
+          overview-click-to-exit = false;
+          panel-anchors = builtins.toJSON { "0" = "MIDDLE"; };
+          panel-element-positions = builtins.toJSON {
+            "0" = [
+              {
+                element = "showAppsButton";
+                visible = false;
+                position = "stackedTL";
+              }
+              {
+                element = "activitiesButton";
+                visible = true;
+                position = "stackedTL";
+              }
+              {
+                element = "leftBox";
+                visible = true;
+                position = "stackedTL";
+              }
+              {
+                element = "taskbar";
+                visible = true;
+                position = "stackedTL";
+              }
+              {
+                element = "centerBox";
+                visible = true;
+                position = "stackedBR";
+              }
+              {
+                element = "rightBox";
+                visible = true;
+                position = "stackedBR";
+              }
+              {
+                element = "dateMenu";
+                visible = true;
+                position = "stackedBR";
+              }
+              {
+                element = "systemMenu";
+                visible = true;
+                position = "stackedBR";
+              }
+              {
+                element = "desktopButton";
+                visible = true;
+                position = "stackedBR";
+              }
+            ];
+          };
+          panel-lengths = builtins.toJSON { "0" = 100; };
+          panel-positions = builtins.toJSON { "0" = "BOTTOM"; };
+          panel-sizes = builtins.toJSON { "0" = 48; };
+          primary-monitor = 0;
+          progress-show-count = true;
+          secondarymenu-contains-appmenu = true;
+          secondarymenu-contains-showdetails = false;
+          show-showdesktop-hover = false;
+          status-icon-padding = -1;
+          stockgs-force-hotcorner = false;
+          stockgs-keep-dash = false;
+          stockgs-keep-top-panel = true;
+          stockgs-panelbtn-click-only = false;
+          trans-use-custom-bg = false;
+          trans-use-custom-opacity = true;
+          tray-padding = 6;
+          tray-size = 0;
+          window-preview-title-position = "TOP";
+        };
+
+        "org/gnome/shell/extensions/arcmenu" = {
+          button-padding = -1;
+          dash-to-panel-standalone = false;
+          disable-recently-installed-apps = false;
+          hide-overview-on-startup = false;
+          menu-layout = "Whisker";
+          multi-monitor = true;
+          pinned-apps = builtins.toJSON [
+            { id = "firefox.desktop"; }
+            { id = "org.gnome.Nautilus.desktop"; }
+            { id = "org.gnome.Terminal.desktop"; }
+            {
+              id = "gnome-extensions prefs arcmenu@arcmenu.com";
+              name = "ArcMenu Settings";
+              icon = "ArcMenu_ArcMenuIcon";
+            }
+            { id = "bitwarden.desktop"; }
+            { id = "bitwarden.desktop"; }
+          ];
+          pop-folders-data = builtins.toJSON {
+            "Library Home" = "Library Home";
+            "Utilities" = "Utilities";
+          };
+          prefs-visible-page = 0;
+          runner-hotkey = [ "<Super>r" ];
+          search-entry-border-radius = builtins.toJSON [
+            true
+            25
+          ];
+          show-activities-button = false;
         };
 
         "org/gnome/desktop/interface" = {
@@ -164,6 +313,15 @@ in
       lock-keys
       dash-to-dock
       user-themes
+      arcmenu # Better app menu
+      vitals # System vitals (Battery time etc.)
+      clipboard-indicator # Clipboard history
+      rounded-window-corners-reborn
+      #openweather-refined
+      #battery-health-charging
+      #gsconnect # KDE Connect for GNOME
+      bluetooth-battery-meter
+      dash-to-panel
     ];
 
     # Catppuccin gtk styling
