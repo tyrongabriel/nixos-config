@@ -12,6 +12,13 @@ in
   imports = [
     inputs.stylix.nixosModules.stylix # Import flake to get stylix module
   ];
+  #disabledModules = [
+  #  # disabled all these paths in both hm and nixos module, maybe this isnt the right one when inside hm?
+  #  "${inputs.stylix}/modules/gnome-text-editor/common.nix"
+  #  "${inputs.stylix}/modules/gnome-text-editor/hm.nix"
+  #  "${inputs.stylix}/modules/gnome-text-editor/nixos.nix"
+  #  "${inputs.stylix}/modules/gnome-text-editor/testbed.nix"
+  #];
 
   options.myNixOS.stylix = with lib; {
     enable = mkEnableOption "Enable Stylix styling";
@@ -21,6 +28,13 @@ in
     # Stylix imported as flake
     stylix = {
       enable = lib.mkDefault true;
+
+      # The whole nixpkgs.config while using useGlobalPkgs:
+      # https://github.com/danth/stylix/issues/865
+      # https://github.com/nix-community/home-manager/pull/6172#issuecomment-2661425250
+      # https://github.com/brckd/stylix/commit/ce6e96cbd88dcbc22e411120455b23bd3cdd5963
+      # This will soon enable:
+      # overlays.enable = false;
       polarity = "dark";
       image = ../../wallpapers/waterfall.png;
 
@@ -70,6 +84,7 @@ in
       targets.grub.enable = true;
       targets.grub.useImage = true;
       targets.plymouth.enable = true;
+      #targets.gnome-text-editor.enable = false;
 
       autoEnable = true;
 
@@ -80,6 +95,7 @@ in
       cursor.size = 24;
 
     };
+
     # Explaination:
     # https://blogs.kde.org/2024/10/09/cursor-size-problems-in-wayland-explained/
     # environment.variables = lib.mkForce {
