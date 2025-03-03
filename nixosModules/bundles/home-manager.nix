@@ -41,17 +41,17 @@ in
       useUserPackages = true;
       backupFileExtension = "bak";
       extraSpecialArgs = {
-        inherit inputs;
-        inherit myLib;
-        outputs = inputs.self.outputs;
+        inherit inputs myLib;
+        homeModules = outputs.homeManagerModules.default;
+        outputs = inputs.self.outputs; # Direct outputs cause infinite recursion
       };
       users = {
         ${cfg.userName} =
-          { ... }:
+          { homeModules, ... }:
           {
             imports = [
               (import cfg.userConfig)
-              outputs.homeManagerModules.default
+              homeModules
             ];
           };
       };

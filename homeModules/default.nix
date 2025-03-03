@@ -1,12 +1,14 @@
 {
-  myLib,
+  #myLib,
   pkgs,
   lib,
   ...
 }:
 let
-  features = (myLib.filesIn ./features);
-  bundles = (myLib.filesIn ./bundles);
+  filesIn = dir: (map (fname: dir + "/${fname}") (builtins.attrNames (builtins.readDir dir)));
+
+  features = (filesIn ./features);
+  bundles = (filesIn ./bundles);
 in
 {
   imports = [ ] ++ features ++ bundles;

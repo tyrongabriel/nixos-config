@@ -1,10 +1,9 @@
 {
-  outputs,
   pkgs,
   ...
 }:
 {
-  imports = [ outputs.homeManagerModules.default ];
+  #imports = [ outputs.homeManagerModules.default ];
   # Configure Home
   home = {
     username = "tyron";

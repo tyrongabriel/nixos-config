@@ -49,6 +49,8 @@ in
     ];
 
     # QT styling not available for gnome platform
-    stylix.targets.qt.enable = false;
+    stylix.targets = lib.mkIf config.myNixOS.stylix.enable {
+      qt.enable = false;
+    };
   };
 }
