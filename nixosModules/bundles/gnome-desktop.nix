@@ -47,5 +47,8 @@ in
       gnome-tweaks
       dconf-editor
     ];
+
+    # QT styling not available for gnome platform
+    stylix.targets.qt.enable = false;
   };
 }
