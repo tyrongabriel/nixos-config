@@ -105,6 +105,15 @@ in
         };
 
         "org/gnome/shell" = {
+          favorite-apps = [
+            "brave-browser.desktop"
+            "discord.desktop"
+            "thunderbird.desktop"
+            "code.desktop"
+            "com.mitchellh.ghostty.desktop"
+            "org.gnome.Nautilus.desktop"
+            "dev.zed.Zed.desktop"
+          ];
           disable-user-extensions = false; # enables user extensions
           enabled-extensions = with pkgs.gnomeExtensions; [
             # Put UUIDs of extensions that you want to enable here.
@@ -131,6 +140,8 @@ in
             #battery-health-charging.extensionUuid
             #gsconnect.extensionUuid
             bluetooth-battery-meter.extensionUuid
+            #just-perfection.extensionUuid
+            media-controls.extensionUuid
           ];
           always-show-log-out = true;
         };
@@ -298,6 +309,7 @@ in
         "org/gnome/desktop/wm/preferences" = {
           button-layout = "appmenu:minimize,maximize,close";
         };
+
       };
 
     };
@@ -322,6 +334,8 @@ in
       #gsconnect # KDE Connect for GNOME
       bluetooth-battery-meter
       dash-to-panel
+      just-perfection
+      media-controls
     ];
 
     # Catppuccin gtk styling

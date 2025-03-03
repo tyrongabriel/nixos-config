@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  services.power-profiles-daemon.enable = lib.mkForce false; # Gnome uses this, we dont!
+  #services.power-profiles-daemon.enable = lib.mkForce false; # Gnome uses this, we dont!
   #https://nixos.wiki/wiki/Laptop
   # For gnome battery extension
   security.polkit.enable = true;
@@ -14,7 +14,7 @@
   # Configure on battery/ac
   #https://linrunner.de/tlp/settings/processor.html#cpu-scaling-min-max-freq-on-ac-bat
   services.tlp = {
-    enable = true;
+    enable = false;
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";

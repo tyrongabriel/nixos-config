@@ -43,7 +43,7 @@ in
       ripgrep
       ncdu
       neofetch
-
+      spotify
       onlyoffice-bin
     ];
   };
