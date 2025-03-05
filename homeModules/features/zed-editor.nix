@@ -30,6 +30,14 @@ in
       ];
 
       userSettings = {
+        assistant = {
+          version = "2";
+          enabled = true;
+          default_model = {
+            provider = "openai";
+            model = "gpt-4o-mini";
+          };
+        };
         features = {
           copilot = true;
         };

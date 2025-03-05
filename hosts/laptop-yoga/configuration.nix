@@ -25,6 +25,7 @@ in
     # use nix run nixpkgs#eza -- --tree --level 3 to list package structure
     # This displays folder structure! nice for fonts etc.
     myNixOS = {
+      devenv.enable = true;
       # Enable gnome desktop
       bundles.gnome-desktop.enable = true;
       #bundles.hyprland-desktop.enable = true;
@@ -46,6 +47,7 @@ in
       userNixosSettings = {
         packages = with pkgs; [
           obsidian
+          jetbrains.idea-ultimate
         ];
       };
     };

@@ -45,6 +45,7 @@ in
       neofetch
       spotify
       onlyoffice-bin
+      wl-clipboard
     ];
   };
 }
