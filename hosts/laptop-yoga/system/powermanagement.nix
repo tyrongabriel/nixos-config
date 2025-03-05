@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 {
   #services.power-profiles-daemon.enable = lib.mkForce false; # Gnome uses this, we dont!
   #https://nixos.wiki/wiki/Laptop

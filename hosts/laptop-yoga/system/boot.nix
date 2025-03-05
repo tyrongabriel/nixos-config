@@ -100,7 +100,7 @@
     '';
     lidSwitch = "suspend-then-hibernate";
   };
-  systemd.sleep.extraConfig = "HibernateDelaySec=600";
+  systemd.sleep.extraConfig = "HibernateDelaySec=${builtins.toString (60 * 45)}";
 
   # https://nixos.wiki/wiki/Swap
   swapDevices = [

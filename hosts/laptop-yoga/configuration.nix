@@ -43,6 +43,11 @@ in
       userConfig = ./home.nix;
       # userNixosConfig for further user conf
       # spacedrive.enable = true;
+      userNixosSettings = {
+        packages = with pkgs; [
+          obsidian
+        ];
+      };
     };
 
     # Set default editor
