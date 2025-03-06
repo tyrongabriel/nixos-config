@@ -165,6 +165,7 @@ in
         };
 
         "org/gnome/shell/extensions/dash-to-panel" = {
+          hot-keys = false; # Disable Super+num for dock apps
           animate-appicon-hover = true;
           animate-appicon-hover-animation-extent = builtins.toJSON {
             RIPPLE = 4;

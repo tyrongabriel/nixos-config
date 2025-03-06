@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -12,6 +13,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      python3 # Needed for JDTLS
+    ];
     # https://mynixos.com/home-manager/options/programs.zed-editor
     programs.zed-editor = {
       enable = true;
@@ -19,6 +23,10 @@ in
         "nix"
         "catppuccin"
         "catppuccin-icons"
+        "java"
+        "html"
+        "scss"
+        "toml"
       ];
       userKeymaps = [
         {
@@ -29,7 +37,9 @@ in
         }
       ];
 
+      #https://zed.dev/docs/configuring-zed#direnv-integration
       userSettings = {
+        load_direnv = "shell_hook";
         assistant = {
           version = "2";
           enabled = true;
@@ -62,6 +72,93 @@ in
               "nixd"
               "!nil"
             ];
+          };
+          Java = {
+            language_servers = [
+              "jdtls"
+            ];
+            initialization_options = {
+              bundles = [ ];
+              #workspaceFolders = [ "file:///home/snjeza/Project" ];
+              settings = {
+                java = {
+                  #home = "/usr/local/jdk-9.0.1";
+                  errors = {
+                    incompleteClasspath = {
+                      severity = "warning";
+                    };
+                  };
+                  configuration = {
+                    updateBuildConfiguration = "interactive";
+                    maven = {
+                      userSettings = null;
+                    };
+                  };
+                  trace = {
+                    server = "verbose";
+                  };
+                  import = {
+                    gradle = {
+                      enabled = true;
+                    };
+                    maven = {
+                      enabled = true;
+                    };
+                    exclusions = [
+                      "**/node_modules/**"
+                      "**/.metadata/**"
+                      "**/archetype-resources/**"
+                      "**/META-INF/maven/**"
+                      "/**/test/**"
+                    ];
+                  };
+                  jdt = {
+                    ls = {
+                      lombokSupport = {
+                        enabled = false; # Change to true to enable Lombok support
+                      };
+                    };
+                  };
+                  referencesCodeLens = {
+                    enabled = false;
+                  };
+                  signatureHelp = {
+                    enabled = true;
+                  };
+                  implementationsCodeLens = {
+                    enabled = false;
+                  };
+                  format = {
+                    enabled = true;
+                  };
+                  saveActions = {
+                    organizeImports = false;
+                  };
+                  contentProvider = {
+                    preferred = null;
+                  };
+                  autobuild = {
+                    enabled = false;
+                  };
+                  completion = {
+                    favoriteStaticMembers = [
+                      "org.junit.Assert.*"
+                      "org.junit.Assume.*"
+                      "org.junit.jupiter.api.Assertions.*"
+                      "org.junit.jupiter.api.Assumptions.*"
+                      "org.junit.jupiter.api.DynamicContainer.*"
+                      "org.junit.jupiter.api.DynamicTest.*"
+                    ];
+                    importOrder = [
+                      "java"
+                      "javax"
+                      "com"
+                      "org"
+                    ];
+                  };
+                };
+              };
+            };
           };
         };
 
