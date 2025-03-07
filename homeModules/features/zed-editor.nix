@@ -35,6 +35,7 @@ in
         "toml"
         "git-firefly"
         "xml"
+        "gitlab-ci-ls"
       ];
       userKeymaps = [
         {
