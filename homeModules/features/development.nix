@@ -18,7 +18,7 @@ in
       initExtra = ''
         eval "$(direnv hook zsh)"
       '';
-      oh-my-zsh.plugins = [ "direnv" ];
+      #oh-my-zsh.plugins = [ "direnv" ];
 
     };
   };

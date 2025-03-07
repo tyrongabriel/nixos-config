@@ -15,8 +15,14 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       python3 # Needed for JDTLS
+      #cargo
+      #rustc
+      #rust-analyzer
+      #rustfmt
+      gcc # For rustup
     ];
     # https://mynixos.com/home-manager/options/programs.zed-editor
+    # https://github.com/nathansbradshaw/zed-angular
     programs.zed-editor = {
       enable = true;
       extensions = [
@@ -27,6 +33,7 @@ in
         "html"
         "scss"
         "toml"
+        "git-firefly"
       ];
       userKeymaps = [
         {
@@ -67,6 +74,18 @@ in
         # https://github.com/zed-extensions/nix
 
         languages = {
+          TypeScript = {
+            language_servers = [
+              "angular"
+              "..."
+            ];
+          };
+          HTML = {
+            language_servers = [
+              "angular"
+              "..."
+            ];
+          };
           Nix = {
             language_servers = [
               "nixd"

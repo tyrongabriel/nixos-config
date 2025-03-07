@@ -70,6 +70,10 @@ in
       nh
       zsh
       tlp
+      rustup # Needed to get zed dev extensions to work (angular)
+      # Fix needed: for --target wasm32-waisip1
+      # https://www.reddit.com/r/Gentoo/comments/181y6mc/i_maybe_messed_up_my_rust_installation_wasm_not/?rdt=50810
+      # rustup target add --toolchain stable wasm32-unknown-unknown
     ];
 
     # This value determines the NixOS release from which the default
