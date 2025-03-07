@@ -41,6 +41,17 @@
   # Configure myHome manager modules
   myHome = {
     profilePicture = ./../../images/catppuccin-pfp.png;
+    git.includes = [
+      {
+        condition = "gitdir:~/university/sepm/";
+        contents = {
+          user = {
+            name = "test";
+            email = "test@gmail.com";
+          };
+        };
+      }
+    ];
     bundles.gaming.enable = true;
     bundles.general.enable = true;
     bundles.gnome-desktop = {

@@ -34,6 +34,7 @@ in
         "scss"
         "toml"
         "git-firefly"
+        "xml"
       ];
       userKeymaps = [
         {
@@ -51,10 +52,25 @@ in
           version = "2";
           enabled = true;
           default_model = {
-            provider = "openai";
-            model = "gpt-4o-mini";
+            #provider = "openai";
+            #model = "gpt-4o-mini";
+            provider = "copilot_chat";
+            model = "o3-mini";
           };
         };
+
+        language_models = {
+          google = {
+            available_models = [
+              {
+                name = "gemini-2.0-flash-latest";
+                display_name = "Gemini 2.0 Flash (Latest-Custom)";
+                max_tokens = 1000000;
+              }
+            ];
+          };
+        };
+
         features = {
           copilot = true;
         };

@@ -70,6 +70,7 @@ in
       nh
       zsh
       tlp
+      nodePackages."@angular/cli"
       rustup # Needed to get zed dev extensions to work (angular)
       # Fix needed: for --target wasm32-waisip1
       # https://www.reddit.com/r/Gentoo/comments/181y6mc/i_maybe_messed_up_my_rust_installation_wasm_not/?rdt=50810

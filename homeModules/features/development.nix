@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   cfg = config.myHome.development;
 in
@@ -12,6 +17,10 @@ in
       enable = true;
       enableZshIntegration = true;
     };
+
+    home.packages = with pkgs; [
+      insomnia
+    ];
 
     programs.zsh = {
       # Add hook
