@@ -52,6 +52,7 @@
         };
       }
     ];
+    bundles.security.enable = true;
     bundles.gaming.enable = true;
     bundles.general.enable = true;
     bundles.gnome-desktop = {
