@@ -19,6 +19,7 @@ in
       #rustc
       #rust-analyzer
       #rustfmt
+      gitlab-ci-ls # Language server for the gitlab ci
       gcc # For rustup
     ];
     # https://mynixos.com/home-manager/options/programs.zed-editor
@@ -30,6 +31,8 @@ in
         "catppuccin"
         "catppuccin-icons"
         "java"
+        "log"
+        "sql"
         "html"
         "scss"
         "toml"
@@ -231,5 +234,21 @@ in
       };
 
     };
+
+    # Activation hook: if the managed zed settings file is a symlink,
+    # remove it and copy its contents (so that it becomes writable).
+    # The file created by home-manager is placed at ~/.config/zed/settings.json.
+    # Activation hook: adjust the zed settings file so that it's not a symlink.
+    # This block runs after the writeBoundary and uses the provided run and verboseEcho functions.
+    home.activation.testScript = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      echo "Starting to move the settings.json file to a writable file"
+      ls -l $HOME/.config/zed/
+      echo "Now copying the settings.json file to a writable file"
+      run cp $HOME/.config/zed/settings.json $HOME/.config/zed/settings.json.tmp
+      run rm $HOME/.config/zed/settings.json -f
+      run cp $HOME/.config/zed/settings.json.tmp $HOME/.config/zed/settings.json
+      run rm $HOME/.config/zed/settings.json.tmp -f
+      echo "Done, settings.json now a regular file"
+    '';
   };
 }

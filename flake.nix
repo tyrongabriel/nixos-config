@@ -64,5 +64,6 @@
       # Accessed via outputs.*.default inside of config files
       homeManagerModules.default = ./homeModules;
       nixosModules.default = ./nixosModules;
+      #flakePath = ./.;
     };
 }

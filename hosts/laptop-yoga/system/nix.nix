@@ -2,6 +2,7 @@
   inputs,
   lib,
   config,
+  outputs,
   ...
 }:
 {
@@ -24,11 +25,12 @@
   # And run execStart
   system.autoUpgrade = {
     enable = true;
-    flake = "${config.users.users.tyron.home}/nixos-config"; # inputs.self.outPath; # Points to flake in nix store, readonly lockfile!
+    # path: is ESSENTIAL: Fixed git-repo ownership error when upgrading flake!
+    flake = "path:${config.users.users.tyron.home}/nixos-config"; # "path:${outputs.flakePath}"; # inputs.self.outPath; # Points to flake in nix store, readonly lockfile!
     flags = [
       "--update-input"
       "nixpkgs"
-      #"--commit-lock-file"
+      "--commit-lock-file" # Doesnt work sadly
       #"-L" # Logging
     ];
     dates = "daily";
