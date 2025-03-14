@@ -31,7 +31,7 @@
       "--update-input"
       "nixpkgs"
       #"--commit-lock-file" # Doesnt work sadly
-      #"-L" # Logging
+      "-L" # Logging
     ];
     dates = "daily";
     randomizedDelaySec = "45min";
