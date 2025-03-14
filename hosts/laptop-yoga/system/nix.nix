@@ -30,7 +30,7 @@
     flags = [
       "--update-input"
       "nixpkgs"
-      "--commit-lock-file" # Doesnt work sadly
+      #"--commit-lock-file" # Doesnt work sadly
       #"-L" # Logging
     ];
     dates = "daily";

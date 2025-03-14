@@ -28,6 +28,8 @@ in
       enable = true;
       extensions = [
         "nix"
+        "dockerfile"
+        "ruff"
         "catppuccin"
         "catppuccin-icons"
         "java"
