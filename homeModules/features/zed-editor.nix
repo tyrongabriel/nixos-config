@@ -250,6 +250,7 @@ in
       run rm $HOME/.config/zed/settings.json -f
       run cp $HOME/.config/zed/settings.json.tmp $HOME/.config/zed/settings.json
       run rm $HOME/.config/zed/settings.json.tmp -f
+      run rm $HOME/.config/zed/settings.json.bak -f
       echo "Done, settings.json now a regular file"
     '';
   };

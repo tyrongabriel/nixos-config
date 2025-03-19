@@ -2,7 +2,7 @@
   inputs,
   lib,
   config,
-  outputs,
+  #outputs,
   ...
 }:
 {
