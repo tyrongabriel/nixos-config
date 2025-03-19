@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  cfg = config.myHome.temux;
+  cfg = config.myHome.tmux;
 in
 {
   options.myHome.tmux = {
