@@ -48,6 +48,7 @@ in
       spotify
       onlyoffice-bin
       wl-clipboard
+      unzip
     ];
   };
 }

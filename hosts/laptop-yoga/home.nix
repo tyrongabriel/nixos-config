@@ -36,10 +36,24 @@
       user = "gitolite3";
       identityFile = "~/.ssh/pp/id_rsa";
     };
+    "reset.inso-world.com" = {
+      hostname = "reset.inso-world.com";
+      user = "git";
+      identityFile = "~/.ssh/id_ed25519_uni";
+    };
   };
 
   # Configure myHome manager modules
   myHome = {
+    ssh.customConfig = ''
+      Host testbed
+        User e12326136
+        HostName is.hackthe.space
+        Port 65522
+        HostKeyAlgorithms +ssh-rsa
+        PubkeyAcceptedAlgorithms +ssh-rsa
+        IdentityFile ~/.ssh/id_ed25519_introsec
+    '';
     profilePicture = ./../../images/catppuccin-pfp.png;
     git.includes = [
       {

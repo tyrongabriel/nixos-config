@@ -27,6 +27,7 @@ in
     programs.zed-editor = {
       enable = true;
       extensions = [
+        "ini"
         "nix"
         "dockerfile"
         "ruff"
@@ -114,16 +115,26 @@ in
               "!nil"
             ];
           };
-          Java = {
-            language_servers = [
-              "jdtls"
-            ];
+        };
+        inlay_hints = {
+          enabled = true;
+        };
+        diagnostics = {
+          include_warnings = true;
+          inline = {
+            enabled = true;
+            update_debounce_ms = 150;
+            padding = 4;
+            min_column = 0;
+            max_severity = null;
+          };
+        };
+        lsp = {
+          jdtls = {
             initialization_options = {
               bundles = [ ];
-              #workspaceFolders = [ "file:///home/snjeza/Project" ];
               settings = {
                 java = {
-                  #home = "/usr/local/jdk-9.0.1";
                   errors = {
                     incompleteClasspath = {
                       severity = "warning";
@@ -156,7 +167,7 @@ in
                   jdt = {
                     ls = {
                       lombokSupport = {
-                        enabled = false; # Change to true to enable Lombok support
+                        enabled = false; # Set this to true to enable lombok support
                       };
                     };
                   };
@@ -164,7 +175,7 @@ in
                     enabled = false;
                   };
                   signatureHelp = {
-                    enabled = true;
+                    enabled = false;
                   };
                   implementationsCodeLens = {
                     enabled = false;
@@ -201,9 +212,6 @@ in
               };
             };
           };
-        };
-
-        lsp = {
           nixd = {
             settings = {
               diagnostic = {
@@ -251,6 +259,7 @@ in
       run cp $HOME/.config/zed/settings.json.tmp $HOME/.config/zed/settings.json
       run rm $HOME/.config/zed/settings.json.tmp -f
       run rm $HOME/.config/zed/settings.json.bak -f
+      run chmod +w $HOME/.config/zed/settings.json
       echo "Done, settings.json now a regular file"
     '';
   };
