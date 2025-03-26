@@ -60,8 +60,8 @@
         condition = "gitdir:~/university/sepm/";
         contents = {
           user = {
-            name = "test";
-            email = "test@gmail.com";
+            name = "Tyron Dylan Gabriel";
+            email = "e12326136@student.tuwien.ac.at";
           };
         };
       }
