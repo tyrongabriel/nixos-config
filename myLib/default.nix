@@ -20,6 +20,10 @@ rec {
       #system = sys;
       specialArgs = {
         inherit inputs outputs myLib;
+        pkgs-stable = import inputs.nixpkgs-stable {
+          system = pkgsFor;
+          config.allowUnfree = true;
+        };
       };
       modules = [
         config
@@ -35,9 +39,13 @@ rec {
   mkHome =
     sys: config:
     inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = import inputs.nixpkgs { system = "x86_64-linux"; }; # pkgsFor sys;
+      pkgs = import inputs.nixpkgs { system = pkgsFor; }; # pkgsFor sys;
       extraSpecialArgs = {
         inherit inputs myLib outputs;
+        pkgs-stable = import inputs.nixpkgs-stable {
+          system = pkgsFor;
+          config.allowUnfree = true;
+        };
       };
       modules = [
         config
