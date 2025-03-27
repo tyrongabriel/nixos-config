@@ -24,6 +24,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland.url = "github:hyprwm/Hyprland";
 
     plasma-manager = {
@@ -39,8 +44,9 @@
       self,
       home-manager,
       stylix,
+      winapps,
       ...
-    }@inputs:
+    }@inputs: # Given as special args inside the modules
     let
       # super simple boilerplate-reducing
       # lib with a bunch of functions (Credit to Vimjoyer)
