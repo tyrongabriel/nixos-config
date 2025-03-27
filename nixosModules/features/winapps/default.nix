@@ -8,6 +8,7 @@
 let
   cfg = config.myNixOS.winapps;
   system = pkgs.system;
+  userName = config.myNixOS.userName;
 in
 {
   options.myNixOS.winapps = with lib; {
@@ -25,5 +26,9 @@ in
       winapps
       winapps-launcher # optional
     ];
+
+    # Enable docker for winapps virtualziation
+    myNixOS.docker.enable = true;
+    # Docker compose file will be placed if home-manager config is active
   };
 }

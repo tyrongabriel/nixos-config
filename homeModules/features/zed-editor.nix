@@ -114,6 +114,11 @@ in
               "nixd"
               "!nil"
             ];
+            formatter = {
+              external = {
+                command = "nixfmt";
+              };
+            };
           };
         };
         inlay_hints = {

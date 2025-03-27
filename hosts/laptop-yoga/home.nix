@@ -45,6 +45,7 @@
 
   # Configure myHome manager modules
   myHome = {
+    winapps.enable = true;
     ssh.customConfig = ''
       Host testbed
         User e12326136
