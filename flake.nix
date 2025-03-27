@@ -56,7 +56,7 @@
     {
       # NOTE: 'nixos' is the default hostname set by the installer
       nixosConfigurations = {
-        yoga = mkSystem ./hosts/laptop-yoga/configuration.nix [
+        yoga = mkSystem "x86_64-linux" ./hosts/laptop-yoga/configuration.nix [
           # Extra modules to be used in the system
           inputs.xremap-flake.nixosModules.default
         ];

@@ -15,13 +15,13 @@ rec {
   # ========================== Buildables ========================== #
 
   mkSystem =
-    config: extraModules:
+    sys: config: extraModules:
     inputs.nixpkgs.lib.nixosSystem {
-      #system = sys;
+      system = sys;
       specialArgs = {
         inherit inputs outputs myLib;
         pkgs-stable = import inputs.nixpkgs-stable {
-          system = pkgsFor;
+          system = sys;
           config.allowUnfree = true;
         };
       };
@@ -39,11 +39,11 @@ rec {
   mkHome =
     sys: config:
     inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = import inputs.nixpkgs { system = pkgsFor; }; # pkgsFor sys;
+      pkgs = import inputs.nixpkgs { system = pkgsFor sys; }; # pkgsFor sys;
       extraSpecialArgs = {
         inherit inputs myLib outputs;
         pkgs-stable = import inputs.nixpkgs-stable {
-          system = pkgsFor;
+          system = pkgsFor sys;
           config.allowUnfree = true;
         };
       };

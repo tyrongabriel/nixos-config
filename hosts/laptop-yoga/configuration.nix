@@ -4,6 +4,7 @@
 
 {
   pkgs,
+  pkgs-stable,
   myLib,
   ...
 }:
@@ -60,23 +61,26 @@ in
     services.printing.enable = true;
 
     # System Packages
-    environment.systemPackages = with pkgs; [
-      nixd # Nix Language Server
-      nil
-      nixfmt-rfc-style
-      neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      git
-      libinput
-      vscode
-      nh
-      zsh
-      tlp
-      nodePackages."@angular/cli"
-      rustup # Needed to get zed dev extensions to work (angular)
-      # Fix needed: for --target wasm32-waisip1
-      # https://www.reddit.com/r/Gentoo/comments/181y6mc/i_maybe_messed_up_my_rust_installation_wasm_not/?rdt=50810
-      # rustup target add --toolchain stable wasm32-unknown-unknown
-    ];
+    environment.systemPackages =
+      (with pkgs; [
+        nil
+        nixfmt-rfc-style
+        neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+        git
+        libinput
+        vscode
+        nh
+        zsh
+        tlp
+        nodePackages."@angular/cli"
+        rustup # Needed to get zed dev extensions to work (angular)
+        # Fix needed: for --target wasm32-waisip1
+        # https://www.reddit.com/r/Gentoo/comments/181y6mc/i_maybe_messed_up_my_rust_installation_wasm_not/?rdt=50810
+        # rustup target add --toolchain stable wasm32-unknown-unknown
+      ])
+      ++ (with pkgs-stable; [
+        nixd # Nix Language Server
+      ]);
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
