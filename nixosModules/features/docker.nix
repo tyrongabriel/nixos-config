@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   cfg = config.myNixOS.docker;
   userName = config.myNixOS.userName;
@@ -9,6 +14,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    boot.kernelModules = [ "kvm-amd" ];
+    environment.systemPackages = with pkgs; [
+      qemu
+    ];
     virtualisation.docker.enable = true;
     users.users.${userName}.extraGroups = [ "docker" ];
   };

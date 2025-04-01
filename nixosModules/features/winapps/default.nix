@@ -8,7 +8,6 @@
 let
   cfg = config.myNixOS.winapps;
   system = pkgs.system;
-  userName = config.myNixOS.userName;
 in
 {
   options.myNixOS.winapps = with lib; {

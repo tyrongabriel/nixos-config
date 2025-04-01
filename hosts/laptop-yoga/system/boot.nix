@@ -39,7 +39,7 @@
       consoleMode = "max";
     };
     # Hide os choice -> shows when pressing button
-    timeout = 0;
+    timeout = 1;
   };
 
   # Enable plymouth for smooth startup animation

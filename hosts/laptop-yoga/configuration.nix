@@ -51,7 +51,7 @@ in
           jetbrains.idea-ultimate
         ];
       };
-      winapps.enable = true;
+      #winapps.enable = true; #Could not get it to work
     };
 
     # Set default editor

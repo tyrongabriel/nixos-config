@@ -39,7 +39,7 @@ rec {
   mkHome =
     sys: config:
     inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = import inputs.nixpkgs { system = pkgsFor sys; }; # pkgsFor sys;
+      pkgs = import inputs.nixpkgs { system = sys; }; # pkgsFor sys;
       extraSpecialArgs = {
         inherit inputs myLib outputs;
         pkgs-stable = import inputs.nixpkgs-stable {
