@@ -18,6 +18,7 @@ in
       enableCompletion = lib.mkDefault true;
       autosuggestion.enable = lib.mkDefault true;
       #initExtra = "neofetch";
+      initExtra = "unalias gcd 2>/dev/null";
       shellAliases = {
         ll = "ls -la";
         lah = "ls -lah";
