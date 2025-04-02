@@ -52,6 +52,7 @@ in
         ];
       };
       #winapps.enable = true; #Could not get it to work
+      klee.enable = true;
     };
 
     # Set default editor
