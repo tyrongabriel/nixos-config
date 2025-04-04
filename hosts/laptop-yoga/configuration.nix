@@ -53,6 +53,9 @@ in
       };
       #winapps.enable = true; #Could not get it to work
       klee.enable = true;
+      qemu.enable = true;
+      john-the-ripper.enable = true;
+      wireguard.enable = true;
     };
 
     # Set default editor
