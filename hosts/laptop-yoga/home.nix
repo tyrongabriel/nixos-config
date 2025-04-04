@@ -99,5 +99,6 @@
     discord
     bitwarden
     nmap
+    dig
   ];
 }
