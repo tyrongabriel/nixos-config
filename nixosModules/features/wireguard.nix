@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 let
@@ -14,7 +13,10 @@ in
 
   config = lib.mkIf cfg.enable {
     networking.firewall = {
-      allowedUDPPorts = [ 51820 ]; # Clients and peers can use the same port, see listenport
+      allowedUDPPorts = [
+        51820
+        65075
+      ]; # Clients and peers can use the same port, see listenport
     };
     # Enable WireGuard
     networking.wireguard.interfaces = {
