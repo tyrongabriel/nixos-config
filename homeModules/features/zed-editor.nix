@@ -228,11 +228,19 @@ in
               };
 
               options = {
-                nixos = {
-                  expr = "(builtins.getFlake \"/home/tyron/nixos-config\").nixosConfigurations.yoga.options";
-                };
+                # nixos = {
+                #   expr = "(builtins.getFlake \"/home/tyron/nixos-config\").nixosConfigurations.yoga.options";
+                # };
+                # home-manager = {
+                #   expr = "(builtins.getFlake \"/home/tyron/nixos-config\").homeConfigurations.\"tyron@yoga\".options";
+                # };
                 home-manager = {
-                  expr = "(builtins.getFlake \"/home/tyron/nixos-config\").homeConfigurations.\"tyron@yoga\".options";
+                  #"expr": "(builtins.getFlake \"/home/tyron/tynix\").nixosConfigurations.\"testvm\".options.home-manager.users.type.getSubOptions []"
+                  expr = "((myFlake: builtins.foldl' (acc: cfgName: acc // (myFlake.nixosConfigurations.\"\${cfgName}\".options or {})) {} (builtins.attrNames myFlake.nixosConfigurations)) (builtins.getFlake \"/home/tyron/nixos-config\")).home-manager.users.type.getSubOptions []";
+                };
+                nixos = {
+                  #"expr": "(builtins.getFlake \"/home/tyron/tynix\").nixosConfigurations.\"testvm\".options"
+                  expr = "(myFlake: builtins.foldl' (acc: cfgName: acc // (myFlake.nixosConfigurations.\"\${cfgName}\".options or {})) {} (builtins.attrNames myFlake.nixosConfigurations)) (builtins.getFlake \"/home/tyron/nixos-config\")";
                 };
               };
             };

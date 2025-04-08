@@ -100,5 +100,7 @@
     bitwarden
     nmap
     dig
+    signal-desktop
+    devbox
   ];
 }

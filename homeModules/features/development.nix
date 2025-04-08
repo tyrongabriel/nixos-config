@@ -16,6 +16,7 @@ in
     programs.direnv = {
       enable = true;
       enableZshIntegration = true;
+      silent = true;
     };
 
     home.packages = with pkgs; [
