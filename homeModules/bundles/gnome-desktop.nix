@@ -142,6 +142,9 @@ in
             bluetooth-battery-meter.extensionUuid
             #just-perfection.extensionUuid
             media-controls.extensionUuid
+
+            tailscale-qs.extensionUuid
+            wireguard-vpn-extension.extensionUuid
           ];
           always-show-log-out = true;
         };
@@ -337,6 +340,9 @@ in
       dash-to-panel
       just-perfection
       media-controls
+      # VPN's
+      tailscale-qs
+      wireguard-vpn-extension
     ];
 
     # Catppuccin gtk styling

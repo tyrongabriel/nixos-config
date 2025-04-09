@@ -26,6 +26,7 @@ in
     # use nix run nixpkgs#eza -- --tree --level 3 to list package structure
     # This displays folder structure! nice for fonts etc.
     myNixOS = {
+      tailscale.enable = true;
       devenv.enable = true;
       # Enable gnome desktop
       bundles.gnome-desktop.enable = true;
@@ -55,7 +56,7 @@ in
       klee.enable = true;
       qemu.enable = true;
       john-the-ripper.enable = true;
-      wireguard.enable = true;
+      wireguard.enable = false;
     };
 
     # Set default editor
