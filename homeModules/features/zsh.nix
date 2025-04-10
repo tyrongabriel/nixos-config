@@ -45,6 +45,17 @@ in
             sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
           };
         }
+        {
+          name = "zsh-syntax-highlighting";
+          file = "catppuccin_mocha-zsh-syntax-highlighting.zsh";
+          # nix-prefetch-github
+          src = pkgs.fetchFromGitHub {
+            owner = "catppuccin";
+            repo = "zsh-syntax-highlighting";
+            rev = "7926c3d3e17d26b3779851a2255b95ee650bd928";
+            hash = "sha256-l6tztApzYpQ2/CiKuLBf8vI2imM6vPJuFdNDSEi7T/o=";
+          };
+        }
       ];
 
     };

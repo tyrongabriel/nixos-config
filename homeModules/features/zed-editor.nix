@@ -27,6 +27,7 @@ in
     programs.zed-editor = {
       enable = true;
       extensions = [
+        "justfile"
         "ini"
         "nix"
         "dockerfile"

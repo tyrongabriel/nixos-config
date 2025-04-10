@@ -41,6 +41,18 @@
       user = "git";
       identityFile = "~/.ssh/id_ed25519_uni";
     };
+    "hp01" = {
+      hostname = "hp01";
+      user = "tyron";
+      port = 22;
+      identityFile = "~/.ssh/id_ed25519";
+    };
+    "ltc01" = {
+      hostname = "ltc01";
+      user = "tyron";
+      port = 22;
+      identityFile = "~/.ssh/id_ed25519";
+    };
   };
 
   # Configure myHome manager modules
@@ -102,5 +114,6 @@
     dig
     signal-desktop
     devbox
+    compose2nix
   ];
 }
