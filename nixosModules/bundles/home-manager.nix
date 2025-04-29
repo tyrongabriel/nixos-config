@@ -5,6 +5,7 @@
   outputs,
   myLib,
   pkgs,
+  pkgs-stable,
   ...
 }:
 let
@@ -41,7 +42,7 @@ in
       useUserPackages = true;
       backupFileExtension = "bak";
       extraSpecialArgs = {
-        inherit inputs myLib;
+        inherit inputs myLib pkgs-stable;
         homeModules = outputs.homeManagerModules.default;
         outputs = inputs.self.outputs; # Direct outputs cause infinite recursion
       };

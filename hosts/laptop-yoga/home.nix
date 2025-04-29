@@ -1,7 +1,12 @@
 {
   pkgs,
+  inputs,
+  pkgs-stable,
   ...
 }:
+let
+  #pkgs-stable = inputs.nixpkgs-stable;
+in
 {
   #imports = [ outputs.homeManagerModules.default ];
   # Configure Home
@@ -106,14 +111,18 @@
   };
 
   # Extra packages not defined in myHome
-  home.packages = with pkgs; [
-    brave
-    discord
-    bitwarden
-    nmap
-    dig
-    signal-desktop
-    devbox
-    compose2nix
-  ];
+  home.packages =
+    with pkgs;
+    [
+      discord
+      bitwarden
+      nmap
+      dig
+      signal-desktop
+      devbox
+      compose2nix
+    ]
+    ++ (with pkgs-stable; [
+      brave
+    ]);
 }
