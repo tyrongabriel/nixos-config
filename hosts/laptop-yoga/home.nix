@@ -121,6 +121,7 @@ in
       signal-desktop
       devbox
       compose2nix
+      burpsuite
     ]
     ++ (with pkgs-stable; [
       brave
