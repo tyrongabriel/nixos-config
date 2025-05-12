@@ -20,7 +20,8 @@ in
     };
 
     home.packages = with pkgs; [
-      insomnia
+      #insomnia
+      bruno
       lnav
     ];
 

@@ -13,16 +13,28 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      eza
+      exiftool
+      bat
+      chafa
+    ];
     programs.zsh = {
       enable = lib.mkDefault true;
       enableCompletion = lib.mkDefault true;
       autosuggestion.enable = lib.mkDefault true;
       #initExtra = "neofetch";
-      initExtra = "unalias gcd 2>/dev/null";
+      initExtra = ''
+        unalias gcd 2>/dev/null
+        # Set up fzf key bindings and fuzzy completion
+        source <(fzf --zsh)
+        eval "$(zoxide init zsh)"
+      '';
       shellAliases = {
-        ll = "ls -la";
-        lah = "ls -lah";
-
+        ll = "eza -lag --icons";
+        lah = "eza -lahg --icons";
+        fzfb = "fzf --preview='bat --color=always {}'";
+        cd = "z";
       };
       syntaxHighlighting.enable = lib.mkDefault true;
       oh-my-zsh = {
@@ -31,9 +43,13 @@ in
         plugins = [
           "git"
           "cp" # Progress bar cp
+          #"zoxide"
+          #"zsh"
+          #"fzf-zsh-plugin"
         ];
       };
 
+      # nix-prefetch-github <owner> <repo>
       plugins = [
         {
           name = "zsh-nix-shell";
@@ -48,7 +64,6 @@ in
         {
           name = "zsh-syntax-highlighting";
           file = "catppuccin_mocha-zsh-syntax-highlighting.zsh";
-          # nix-prefetch-github
           src = pkgs.fetchFromGitHub {
             owner = "catppuccin";
             repo = "zsh-syntax-highlighting";
@@ -56,6 +71,16 @@ in
             hash = "sha256-l6tztApzYpQ2/CiKuLBf8vI2imM6vPJuFdNDSEi7T/o=";
           };
         }
+        # {
+        #   name = "fzf-zsh-plugin";
+        #   file = "fzf-zsh-plugin.plugin.zsh";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "unixorn";
+        #     repo = "fzf-zsh-plugin";
+        #     rev = "909f0b8879481eab93741fa284a7d1d13cf6f79e";
+        #     hash = "sha256-RILk4dHYk6yL7wmdRqmOf6JsyyoKNbbT6dHa5ExAAP0=";
+        #   };
+        # }
       ];
 
     };

@@ -57,6 +57,7 @@ in
       qemu.enable = true;
       john-the-ripper.enable = true;
       wireguard.enable = false;
+      docker.enable = true;
     };
 
     # Set default editor

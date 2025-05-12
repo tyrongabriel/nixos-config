@@ -106,13 +106,13 @@ in
 
         "org/gnome/shell" = {
           favorite-apps = [
+            "com.mitchellh.ghostty.desktop"
+            "dev.zed.Zed.desktop"
             "brave-browser.desktop"
             "discord.desktop"
             "thunderbird.desktop"
             "code.desktop"
-            "com.mitchellh.ghostty.desktop"
             "org.gnome.Nautilus.desktop"
-            "dev.zed.Zed.desktop"
           ];
           disable-user-extensions = false; # enables user extensions
           enabled-extensions = with pkgs.gnomeExtensions; [

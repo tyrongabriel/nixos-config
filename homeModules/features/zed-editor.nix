@@ -63,7 +63,7 @@ in
             #provider = "openai";
             #model = "gpt-4o-mini";
             provider = "copilot_chat";
-            model = "o3-mini";
+            model = "gemini-2.0-flash-001";
           };
         };
 

@@ -122,6 +122,8 @@ in
       devbox
       compose2nix
       burpsuite
+      zoxide
+      ripgrep
     ]
     ++ (with pkgs-stable; [
       brave
