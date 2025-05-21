@@ -4,6 +4,7 @@
   pkgs,
   ...
 }:
+with lib;
 let
   cfg = config.myHome.zsh;
 in
@@ -19,16 +20,30 @@ in
       bat
       chafa
     ];
+
+    programs.zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    programs.fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    programs.eza = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     programs.zsh = {
       enable = lib.mkDefault true;
       enableCompletion = lib.mkDefault true;
       autosuggestion.enable = lib.mkDefault true;
       #initExtra = "neofetch";
-      initExtra = ''
+      ## Content at the very end:
+      initContent = mkAfter ''
         unalias gcd 2>/dev/null
-        # Set up fzf key bindings and fuzzy completion
-        source <(fzf --zsh)
-        eval "$(zoxide init zsh)"
       '';
       shellAliases = {
         ll = "eza -lag --icons";

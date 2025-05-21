@@ -27,9 +27,9 @@ in
 
     programs.zsh = {
       # Add hook
-      initExtra = ''
-        eval "$(direnv hook zsh)"
-      '';
+      # initContent = ''
+      #   eval "$(direnv hook zsh)"
+      # '';
       #oh-my-zsh.plugins = [ "direnv" ];
 
     };
