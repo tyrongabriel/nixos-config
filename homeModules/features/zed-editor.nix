@@ -56,14 +56,13 @@ in
       #https://zed.dev/docs/configuring-zed#direnv-integration
       userSettings = {
         load_direnv = "shell_hook";
-        assistant = {
+        agent = {
           version = "2";
           enabled = true;
+          default_profile = "ask";
           default_model = {
-            #provider = "openai";
-            #model = "gpt-4o-mini";
-            provider = "copilot_chat";
-            model = "gemini-2.0-flash-001";
+            provider = "google";
+            model = "gemini-2.5-flash-preview-04-17";
           };
         };
 
