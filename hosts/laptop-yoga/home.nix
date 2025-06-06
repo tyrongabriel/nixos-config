@@ -124,6 +124,7 @@ in
       burpsuite
       zoxide
       ripgrep
+      zoom-us
     ]
     ++ (with pkgs-stable; [
       brave

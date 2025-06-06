@@ -20,6 +20,13 @@ in
       TAILNET_NAME = tailnet;
     };
     services.tailscale.enable = true;
+    # Tailscale had my dns broken sometimes... Adding backups
+    networking.nameservers = [
+      "8.8.8.8"
+      "8.8.4.4"
+      "1.1.1.1"
+    ];
+
     # If my tailnet uses routing features etc. need to configure
     #services.tailscale.useRoutingFeatures = "both" | "server" | "client"
 
