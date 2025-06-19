@@ -14,7 +14,10 @@ in
 
   config = lib.mkIf cfg.enable {
     myHome = {
-      ghidra.enable = true;
+      ghidra = {
+        enable = true;
+        uiScale = 2;
+      };
     };
 
     home.packages = with pkgs; [
