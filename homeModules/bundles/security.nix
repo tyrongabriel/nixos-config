@@ -13,6 +13,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    myHome = {
+      ghidra.enable = true;
+    };
+
     home.packages = with pkgs; [
       python3 # Python for Http server
       ngrok # For publishing tunnels
@@ -33,7 +37,6 @@ in
       foremost
       wireshark
       capstone
-      ghidra
     ];
   };
 }
