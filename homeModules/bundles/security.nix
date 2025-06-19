@@ -16,7 +16,7 @@ in
     myHome = {
       ghidra = {
         enable = true;
-        uiScale = 2;
+        uiScale = 2.0;
       };
     };
 
