@@ -15,15 +15,21 @@ let
       ${oldAttrs.postInstall or ""} # Keep existing postInstall actions
 
       # Path to the launch.properties file within the installed Ghidra
-      GHIDRA_SUPPORT_DIR=$out/lib/ghidra/support
-      LAUNCH_PROPERTIES_FILE=$GHIDRA_SUPPORT_DIR/launch.properties
+      GHIDRA_SUPPORT_DIR="$out/lib/ghidra/support"
+      LAUNCH_PROPERTIES_FILE="$GHIDRA_SUPPORT_DIR/launch.properties"
 
-      # Use sed to modify the uiScale value
-      # We need to ensure the line exists or add it if it doesn't.
-      # First, try to replace if the line exists.
-      # If not found (exit code 1), append the line.
-      if ! sed -i 's|^-Dsun.java2d.uiScale=.*$|-Dsun.java2d.uiScale=${toString cfg.uiScale}|' "$LAUNCH_PROPERTIES_FILE"; then
-        echo "VMARGS_LINUX=-Dsun.java2d.uiScale=${toString cfg.uiScale}" >> "$LAUNCH_PROPERTIES_FILE"
+      # Ensure the support directory exists
+      mkdir -p "$GHIDRA_SUPPORT_DIR"
+
+      SCALE_VALUE="${toString cfg.uiScale}"
+
+      # Check if a line starting with VMARGS_LINUX= and containing -Dsun.java2d.uiScale exists
+      if grep -q "^VMARGS_LINUX=-Dsun.java2d.uiScale=" "$LAUNCH_PROPERTIES_FILE"; then
+        # The line exists and has uiScale, so replace its value
+        sed -i "s/^VMARGS_LINUX=-Dsun.java2d.uiScale=.*/VMARGS_LINUX=-Dsun.java2d.uiScale=$SCALE_VALUE/g" "$LAUNCH_PROPERTIES_FILE"
+      else
+        # VMARGS_LINUX=-Dsun.java2d.uiScale line does not exist at all, append the whole line
+        echo "VMARGS_LINUX=-Dsun.java2d.uiScale=$SCALE_VALUE" >> "$LAUNCH_PROPERTIES_FILE"
       fi
     '';
   });
@@ -39,7 +45,7 @@ in
       description = ''
         Set the UI scaling factor for Ghidra.
         Examples: 1.0 (no scaling), 1.25, 1.5, 2.0.
-        This modifies the -Dsun.java2d.uiScale Java property.
+        This modifies the -Dsun.java2d.uiScale Java property in launch.properties.
       '';
       example = 1.5;
     };
