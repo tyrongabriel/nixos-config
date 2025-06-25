@@ -98,9 +98,10 @@
     extraConfig = ''
       HandlePowerKey=poweroff
     '';
-    lidSwitch = "suspend-then-hibernate";
+    #lidSwitch = "suspend-then-hibernate";
+    lidSwitch = "poweroff";
   };
-  systemd.sleep.extraConfig = "HibernateDelaySec=${builtins.toString (60 * 45)}";
+  #systemd.sleep.extraConfig = "HibernateDelaySec=${builtins.toString (60 * 45)}";
 
   # https://nixos.wiki/wiki/Swap
   swapDevices = [
