@@ -17,7 +17,7 @@ in
     # https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/#getting-home-manager-set-up
 
     services.xserver.enable = true;
-    services.xserver.displayManager.gdm.enable = true;
+    services.displayManager.gdm.enable = true;
     services.desktopManager.gnome.enable = true;
     environment.gnome.excludePackages = (
       with pkgs;
