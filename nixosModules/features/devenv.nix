@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs,
+  pkgs-stable,
   ...
 }:
 let
@@ -12,7 +12,7 @@ in
     enable = mkEnableOption "Enable devenv dev environments";
   };
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = with pkgs-stable; [
       devenv
     ];
 
