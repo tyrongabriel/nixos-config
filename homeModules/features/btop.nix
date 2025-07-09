@@ -11,7 +11,7 @@ in
     programs.btop = {
       enable = true;
       settings = {
-        vim_keys = "True";
+        vim_keys = true;
       };
     };
   };
