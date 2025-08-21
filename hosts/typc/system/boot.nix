@@ -83,10 +83,10 @@
       #"fbcon=nodefer"
       #"vga=current"
       # nixos.wiki/wiki/Hibernation
-      "resume_offset=25532416" # gotten through sudo filefrag -v /var/lib/swapfile | awk 'NR==4{gsub(/\./,"");print $4;}'
+      #"resume_offset=25532416" # gotten through sudo filefrag -v /var/lib/swapfile | awk 'NR==4{gsub(/\./,"");print $4;}'
     ];
 
-    resumeDevice = "/dev/disk/by-uuid/ae97e642-8478-4b62-a7f5-cdd41d197ad1";
+    #resumeDevice = "/dev/disk/by-uuid/ae97e642-8478-4b62-a7f5-cdd41d197ad1";
   };
   hardware.graphics.enable = true; # For plymouth to render instantly
 
@@ -99,15 +99,15 @@
       HandlePowerKey=poweroff
     '';
     #lidSwitch = "suspend-then-hibernate";
-    lidSwitch = "poweroff";
+    #lidSwitch = "poweroff";
   };
   #systemd.sleep.extraConfig = "HibernateDelaySec=${builtins.toString (60 * 45)}";
 
   # https://nixos.wiki/wiki/Swap
   swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 32 * 1024; # Size in mb -> 32 GiB (Should > RAM for hibernation)
-    }
+    # {
+    #   device = "/var/lib/swapfile";
+    #   size = 32 * 1024; # Size in mb -> 32 GiB (Should > RAM for hibernation)
+    # }
   ];
 }

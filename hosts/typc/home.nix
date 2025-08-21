@@ -12,7 +12,7 @@ in
   home = {
     username = "tyron";
     homeDirectory = "/home/tyron";
-    stateVersion = "24.11";
+    stateVersion = "25.05";
     sessionVariables = {
       #FLAKE = "${config.home.homeDirectory}/nixos-config"; # Not Working
       #FUCK = "HI";
