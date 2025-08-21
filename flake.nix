@@ -64,11 +64,16 @@
           # Extra modules to be used in the system
           inputs.xremap-flake.nixosModules.default
         ];
+        typc = mkSystem "x86_64-linux" ./hosts/typc/configuration.nix [
+          # Extra modules to be used in the system
+          inputs.xremap-flake.nixosModules.default
+        ];
         #another host
       };
 
       homeConfigurations = {
         "tyron@yoga" = mkHome "x86_64-linux" ./hosts/laptop-yoga/home.nix;
+        "tyron@typc" = mkHome "x86_64-linux" ./hosts/typc/home.nix;
       };
 
       # Accessed via outputs.*.default inside of config files
