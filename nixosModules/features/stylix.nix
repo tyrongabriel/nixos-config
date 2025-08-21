@@ -82,7 +82,7 @@ in
 
       targets.chromium.enable = true;
       targets.grub.enable = true;
-      targets.grub.useImage = true;
+      targets.grub.useWallpaper = true;
       targets.plymouth.enable = true;
       #targets.gnome-text-editor.enable = false;
 

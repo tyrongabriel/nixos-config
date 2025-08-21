@@ -84,11 +84,9 @@ in
       }
     ];
     bundles.security.enable = true;
-    myHome = {
-      ghidra = {
-        enable = true;
-        uiScale = 2.0;
-      };
+    ghidra = {
+      enable = true;
+      uiScale = 2.0;
     };
     bundles.gaming.enable = true;
     bundles.general.enable = true;
