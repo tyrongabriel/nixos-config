@@ -13,12 +13,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    myHome = {
-      ghidra = {
-        enable = true;
-        uiScale = 2.0;
-      };
-    };
 
     home.packages = with pkgs; [
       python3 # Python for Http server
