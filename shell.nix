@@ -1,6 +1,5 @@
 {
-  pkgs,
-  ...
+  pkgs ? import <nixpkgs> { },
 }:
 pkgs.mkShell {
   NIX_CONFIG = "extra-experimental-features = nix-command flakes";
@@ -19,5 +18,6 @@ pkgs.mkShell {
     ssh-to-age
     gnupg
     age
+    zsh
   ];
 }

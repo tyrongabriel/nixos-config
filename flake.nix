@@ -76,6 +76,10 @@
         "tyron@typc" = mkHome "x86_64-linux" ./hosts/typc/home.nix;
       };
 
+      devShells.x86_64-linux.default = import ./shell.nix {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      };
+
       # Accessed via outputs.*.default inside of config files
       homeManagerModules.default = ./homeModules;
       nixosModules.default = ./nixosModules;
