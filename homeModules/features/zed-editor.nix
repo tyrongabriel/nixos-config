@@ -57,7 +57,7 @@ in
       userSettings = {
         load_direnv = "shell_hook";
         agent = {
-          version = "2";
+          #version = "2";
           enabled = true;
           default_profile = "ask";
           default_model = {
