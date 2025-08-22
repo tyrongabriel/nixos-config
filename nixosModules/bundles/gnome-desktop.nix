@@ -37,6 +37,7 @@ in
         yelp # Help view
         gnome-contacts
         gnome-initial-setup
+        gnome-text-editor
       ]
     );
     # ++ (with pkgs.gnome; [ ] );
