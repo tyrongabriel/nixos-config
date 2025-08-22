@@ -128,12 +128,8 @@ in
       zoxide
       ripgrep
       zoom-us
-      ventoy
     ]
     ++ (with pkgs-stable; [
       brave
     ]);
-  nixpkgs.config.permittedInsecurePackages = [
-    "ventoy-1.1.05"
-  ];
 }

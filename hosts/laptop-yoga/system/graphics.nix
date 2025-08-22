@@ -11,6 +11,12 @@
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = true;
 
+  hardware.amdgpu = {
+    initrd.enable = true;
+    amdvlk.enable = true;
+    opencl.enable = true;
+  };
+
   # Enable 3D acceleration with Mesa and its support for VA-API.
   # This is required for hardware video decoding.
   hardware.opengl = {
@@ -26,6 +32,14 @@
     ];
   };
 
+  hardware.graphics.extraPackages = with pkgs; [
+    amdvlk
+  ];
+  # For 32 bit applications
+  hardware.graphics.extraPackages32 = with pkgs; [
+    driversi686Linux.amdvlk
+  ];
+
   # Set the environment variable to enable Wayland support for Brave/Chromium.
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
@@ -33,4 +47,9 @@
     # This is less common on modern systems but worth knowing.
     # NIX_OZONE_PLATFORM = "wayland";
   };
+  environment.systemPackages = with pkgs; [
+    libva
+    libva-utils
+    radeontop
+  ];
 }
