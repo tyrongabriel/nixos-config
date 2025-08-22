@@ -68,6 +68,7 @@
           # Extra modules to be used in the system
           inputs.xremap-flake.nixosModules.default
         ];
+        install-iso = mkIso "x86_64-linux" ./hosts/install-iso/configuration.nix [ ];
         #another host
       };
 

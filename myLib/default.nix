@@ -14,6 +14,26 @@ rec {
 
   # ========================== Buildables ========================== #
 
+  mkIso =
+    sys: config: extraModules:
+    inputs.nixpkgs.lib.nixosSystem {
+      system = sys;
+      specialArgs = {
+        inherit inputs outputs myLib;
+        pkgs-stable = import inputs.nixpkgs-stable {
+          system = sys;
+          config.allowUnfree = true;
+        };
+      };
+      modules = [
+        config
+        {
+          nixpkgs.hostPlatform = sys; # That way we dont need it in every iso
+        }
+      ]
+      ++ extraModules;
+    };
+
   mkSystem =
     sys: config: extraModules:
     inputs.nixpkgs.lib.nixosSystem {
@@ -33,7 +53,8 @@ rec {
           home-manager.useGlobalPkgs = true; # Tells Home-Manager to use systems nixpkgs
           home-manager.useUserPackages = true; # Allows home-manager to install to /etc/profiles
         }
-      ] ++ extraModules;
+      ]
+      ++ extraModules;
     };
 
   mkHome =

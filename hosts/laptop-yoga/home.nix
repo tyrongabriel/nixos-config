@@ -23,7 +23,7 @@ in
     # };
   };
   programs.home-manager.enable = true;
-  #nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
   # Some local git config
   programs.git.userName = "tyrongabriel";
@@ -128,8 +128,12 @@ in
       zoxide
       ripgrep
       zoom-us
+      ventoy
     ]
     ++ (with pkgs-stable; [
       brave
     ]);
+  nixpkgs.config.permittedInsecurePackages = [
+    "ventoy-1.1.05"
+  ];
 }
