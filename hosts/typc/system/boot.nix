@@ -10,7 +10,7 @@
     efi = {
       canTouchEfiVariables = true;
       # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
-      #efiSysMountPoint = "/boot/efi";
+      efiSysMountPoint = "/boot/EFI";
     };
     grub = lib.mkForce {
       # To override stylix to get a prettier bootloader
@@ -18,7 +18,8 @@
       device = "nodev"; # No specific partition
       useOSProber = true; # Autodetect windows
       efiSupport = true;
-      gfxmodeEfi = "2880x1800x32";
+      #efiInstallAsRemovable = true;
+      #gfxmodeEfi = "2880x1800x32";
 
       font = "${config.stylix.fonts.monospace.package}/share/fonts/truetype/NerdFonts/JetBrainsMono/JetBrainsMonoNerdFontMono-Regular.ttf";
       # "${pkgs.fira-code}/share/fonts/truetype/FiraCode-VF.ttf";
