@@ -54,35 +54,34 @@ in
   config = lib.mkIf cfg.enable {
     # Autostart apps
     # https://github.com/nix-community/home-manager/issues/3447
-    home.file =
-      {
-        ".face".source = config.myHome.profilePicture;
-      }
-      // builtins.listToAttrs (
-        map (
-          pkg:
-          let
-            # Read file content, concat the extra args
-            textContent =
-              (
-                if pkg.pkg ? dekstopItem then
-                  pkg.pkg.desktopItem.text
-                else
-                  builtins.readFile (pkg.pkg + "/share/applications/" + pkg.name + ".desktop")
-              )
-              + (builtins.concatStringsSep "\n" pkg.extraArguments);
-            replaceFroms = builtins.map (ra: ra.from) pkg.replaceArguments;
-            replaceTos = builtins.map (ra: ra.to) pkg.replaceArguments;
-          in
-          {
-            name = ".config/autostart/" + pkg.name + ".desktop";
-            value = {
-              # Replace the replace-args in the textContent
-              text = (builtins.replaceStrings replaceFroms replaceTos textContent);
-            };
-          }
-        ) cfg.autostartPrograms
-      );
+    home.file = {
+      ".face".source = config.myHome.profilePicture;
+    }
+    // builtins.listToAttrs (
+      map (
+        pkg:
+        let
+          # Read file content, concat the extra args
+          textContent =
+            (
+              if pkg.pkg ? dekstopItem then
+                pkg.pkg.desktopItem.text
+              else
+                builtins.readFile (pkg.pkg + "/share/applications/" + pkg.name + ".desktop")
+            )
+            + (builtins.concatStringsSep "\n" pkg.extraArguments);
+          replaceFroms = builtins.map (ra: ra.from) pkg.replaceArguments;
+          replaceTos = builtins.map (ra: ra.to) pkg.replaceArguments;
+        in
+        {
+          name = ".config/autostart/" + pkg.name + ".desktop";
+          value = {
+            # Replace the replace-args in the textContent
+            text = (builtins.replaceStrings replaceFroms replaceTos textContent);
+          };
+        }
+      ) cfg.autostartPrograms
+    );
 
     # https://determinate.systems/posts/declarative-gnome-configuration-with-nixos/
     # https://wiki.nixos.org/wiki/GNOME
@@ -131,7 +130,7 @@ in
             # Alternatively, you can manually pass UUID as a string.
             #"blur-my-shell@aunetx"
             # ...
-            user-themes.extensionUuid
+            #user-themes.extensionUuid
             arcmenu.extensionUuid
             vitals.extensionUuid
             clipboard-indicator.extensionUuid
@@ -328,7 +327,7 @@ in
       appindicator
       lock-keys
       dash-to-dock
-      user-themes
+      #user-themes
       arcmenu # Better app menu
       vitals # System vitals (Battery time etc.)
       clipboard-indicator # Clipboard history

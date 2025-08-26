@@ -6,12 +6,14 @@
   pkgs,
   pkgs-stable,
   myLib,
+  lib,
   ...
 }:
 let
   # Include the system specific configurations (Boot, hardware etc.)
   sysfiles = (myLib.filesIn ./system);
 in
+with lib;
 {
   imports = [
     ../../nixosModules
@@ -63,6 +65,7 @@ in
 
     users.users.tyron = {
       isNormalUser = true;
+      initialPassword = mkDefault "1";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEqAq3GCuNXFc8mQL+H/czF0+pOlyQ4c4GILKUcrK0fZ 51530686+tyrongabriel@users.noreply.github.com"
       ];

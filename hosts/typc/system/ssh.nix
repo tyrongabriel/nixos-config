@@ -19,6 +19,19 @@
     };
   };
 
+  # onyl for deployrs
+  # security.sudo.extraRules = [
+  #   {
+  #     users = [ "tyron" ];
+  #     commands = [
+  #       {
+  #         command = "ALL";
+  #         options = [ "NOPASSWD" ];
+  #       }
+  #     ];
+  #   }
+  # ];
+
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 ];
 }
