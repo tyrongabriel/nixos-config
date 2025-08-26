@@ -130,7 +130,7 @@ in
             # Alternatively, you can manually pass UUID as a string.
             #"blur-my-shell@aunetx"
             # ...
-            #user-themes.extensionUuid
+            user-themes.extensionUuid
             arcmenu.extensionUuid
             vitals.extensionUuid
             clipboard-indicator.extensionUuid
@@ -327,7 +327,7 @@ in
       appindicator
       lock-keys
       dash-to-dock
-      #user-themes
+      user-themes
       arcmenu # Better app menu
       vitals # System vitals (Battery time etc.)
       clipboard-indicator # Clipboard history
