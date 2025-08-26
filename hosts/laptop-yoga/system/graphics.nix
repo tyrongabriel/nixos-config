@@ -19,9 +19,8 @@
 
   # Enable 3D acceleration with Mesa and its support for VA-API.
   # This is required for hardware video decoding.
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport32Bit = true; # Necessary for 32-bit applications
     extraPackages = with pkgs; [
       mesa
       #mesa-va-drivers
@@ -29,16 +28,16 @@
       # For Vulkan support, which is often used by games and some apps.
       # The open-source RADV Vulkan driver is part of mesa.drivers
       vulkan-loader
+      amdvlk
+
+    ];
+    # For 32 bit applications
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
     ];
   };
 
-  hardware.graphics.extraPackages = with pkgs; [
-    amdvlk
-  ];
-  # For 32 bit applications
-  hardware.graphics.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
+  hardware.opengl.driSupport32Bit = true; # Necessary for 32-bit applications
 
   # Set the environment variable to enable Wayland support for Brave/Chromium.
   environment.sessionVariables = {

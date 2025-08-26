@@ -40,6 +40,7 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     #   inputs.home-manager.follows = "home-manager";
     # };
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
   outputs =
     {
@@ -49,6 +50,7 @@
       home-manager,
       stylix,
       winapps,
+      deploy-rs,
       ...
     }@inputs: # Given as special args inside the modules
     let
@@ -68,9 +70,20 @@
           # Extra modules to be used in the system
           inputs.xremap-flake.nixosModules.default
         ];
-        install-iso = mkIso "x86_64-linux" ./hosts/install-iso/configuration.nix [ ];
         #another host
       };
+
+      deploy.nodes.typc = {
+        hostname = "192.168.1.138";
+        profiles.system = {
+          sshUser = "tyron";
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.typc;
+        };
+      };
+
+      # This is highly advised, and will prevent many possible mistakes
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
       homeConfigurations = {
         "tyron@yoga" = mkHome "x86_64-linux" ./hosts/laptop-yoga/home.nix;

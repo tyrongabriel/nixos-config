@@ -15,7 +15,8 @@ in
 {
   imports = [
     ../../nixosModules
-  ] ++ sysfiles;
+  ]
+  ++ sysfiles;
 
   options = { };
 
@@ -59,6 +60,30 @@ in
       wireguard.enable = false;
       docker.enable = true;
     };
+
+    users.users.tyron = {
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEqAq3GCuNXFc8mQL+H/czF0+pOlyQ4c4GILKUcrK0fZ 51530686+tyrongabriel@users.noreply.github.com"
+      ];
+      # TODO: set in modules
+      extraGroups = [
+        "wheel"
+        "audio"
+        "sound"
+        "video"
+        "networkmanager"
+        "input"
+        "tty"
+        "podman"
+        "kvm"
+        "libvirtd"
+      ];
+    };
+    nix.settings.trusted-users = [
+      "tyron"
+      "@wheel"
+    ]; # for deploy-rs
 
     # Set default editor
     environment.variables.EDITOR = "nvim";
