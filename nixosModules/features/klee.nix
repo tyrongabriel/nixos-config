@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs,
+  pkgs-stable,
   ...
 }:
 let
@@ -13,7 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = with pkgs-stable; [
       klee
     ];
   };

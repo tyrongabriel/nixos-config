@@ -85,10 +85,10 @@ in
         # https://www.reddit.com/r/Gentoo/comments/181y6mc/i_maybe_messed_up_my_rust_installation_wasm_not/?rdt=50810
         # rustup target add --toolchain stable wasm32-unknown-unknown
         iproute2
-        ventoy-full-gtk
       ])
       ++ (with pkgs-stable; [
         nixd # Nix Language Server
+        #ventoy-full-gtk
       ]);
     nixpkgs.config.permittedInsecurePackages = [
       "ventoy-gtk3-1.1.05"

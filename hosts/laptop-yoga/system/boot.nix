@@ -95,9 +95,10 @@
 
   # Lid behaviour
   services.logind = {
-    extraConfig = ''
-      HandlePowerKey=poweroff
-    '';
+    ## Deprecated
+    # extraConfig = ''
+    #   HandlePowerKey=poweroff
+    # '';
     #lidSwitch = "suspend-then-hibernate";
     lidSwitch = "poweroff";
   };

@@ -79,7 +79,7 @@ in
         };
 
         features = {
-          copilot = true;
+          edit_prediction_provider = "copilot";
         };
         telemetry = {
           metrics = false;

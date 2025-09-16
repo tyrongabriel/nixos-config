@@ -57,6 +57,12 @@ in
       port = 22;
       identityFile = "~/.ssh/id_ed25519";
     };
+    "ncvps" = {
+      hostname = "202.61.203.208";
+      user = "tyron";
+      port = 22022;
+      identityFile = "~/.ssh/id_ed25519";
+    };
   };
 
   # Configure myHome manager modules
