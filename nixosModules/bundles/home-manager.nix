@@ -60,7 +60,7 @@ in
 
     users.users.${cfg.userName} = {
       isNormalUser = true;
-      initialPassword = "12345";
+      initialPassword = "12345"; # use mkpasswd -m sha-512 and then ente rpassword
       description = cfg.userName;
       shell = pkgs.zsh;
       extraGroups = [
@@ -68,6 +68,7 @@ in
         "networkmanager"
         "wheel"
       ];
-    } // cfg.userNixosSettings;
+    }
+    // cfg.userNixosSettings;
   };
 }

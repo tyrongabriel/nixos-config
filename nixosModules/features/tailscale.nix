@@ -23,18 +23,25 @@ in
     # Tailscale had my dns broken sometimes... Adding backups
     # https://github.com/tailscale/tailscale/issues/4254
     networking.nameservers = [
-      "1.1.1.1#one.one.one.one"
-      "1.0.0.1#one.one.one.one"
+      "1.1.1.1"
+      "1.0.0.1"
     ];
     services.resolved = {
       enable = true;
-      dnssec = "true";
+      dnssec = "false"; # because some dns (like terranix.org) dont resolve
       domains = [ "~." ];
       fallbackDns = [
-        "1.1.1.1#one.one.one.one"
-        "1.0.0.1#one.one.one.one"
+        "1.1.1.1"
+        "1.0.0.1"
       ];
       dnsovertls = "true";
+    };
+
+    # Bug: https://github.com/tailscale/tailscale/issues/4254
+    #networking.useNetworkd = true;
+
+    networking.interfaces.tailscale0 = {
+      useDHCP = false;
     };
 
     # If my tailnet uses routing features etc. need to configure

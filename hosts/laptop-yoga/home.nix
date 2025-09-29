@@ -57,10 +57,10 @@ in
       port = 22;
       identityFile = "~/.ssh/id_ed25519";
     };
-    "ncvps" = {
-      hostname = "202.61.203.208";
+    "ncvps01" = {
+      hostname = "152.53.149.109";
       user = "tyron";
-      port = 22022;
+      port = 22;
       identityFile = "~/.ssh/id_ed25519";
     };
   };

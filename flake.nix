@@ -41,6 +41,8 @@
     #   inputs.home-manager.follows = "home-manager";
     # };
     deploy-rs.url = "github:serokell/deploy-rs";
+
+    tylib.url = "github:tyrongabriel/tylib";
   };
   outputs =
     {
@@ -65,6 +67,7 @@
         yoga = mkSystem "x86_64-linux" ./hosts/laptop-yoga/configuration.nix [
           # Extra modules to be used in the system
           inputs.xremap-flake.nixosModules.default
+          inputs.tylib.nixosModules.default
         ];
         typc = mkSystem "x86_64-linux" ./hosts/typc/configuration.nix [
           # Extra modules to be used in the system

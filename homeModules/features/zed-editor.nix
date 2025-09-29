@@ -61,8 +61,8 @@ in
           enabled = true;
           default_profile = "ask";
           default_model = {
-            provider = "copilot_chat";
-            model = "gemini-2.0-flash-001";
+            provider = "google";
+            model = "gemini-2.5-flash";
           };
         };
 
@@ -79,11 +79,12 @@ in
         };
 
         features = {
-          edit_prediction_provider = "copilot";
+          edit_prediction_provider = "supermaven";
         };
         telemetry = {
           metrics = false;
         };
+
         theme = lib.mkForce "Catppuccin Mocha";
         icon_theme = {
           mode = "system";
