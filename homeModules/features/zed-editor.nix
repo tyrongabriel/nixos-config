@@ -67,108 +67,110 @@ in
         };
 
         language_models = {
-          google = {
-            available_models = [
-              {
-                name = "gemini-2.0-flash-latest";
-                display_name = "Gemini 2.0 Flash (Latest-Custom)";
-                max_tokens = 1000000;
-              }
-            ];
-          };
+          # google = {
+          #   available_models = [
+          #     {
+          #       name = "gemini-2.0-flash-latest";
+          #       display_name = "Gemini 2.0 Flash (Latest-Custom)";
+          #       max_tokens = 1000000;
+          #     }
+          #   ];
+          # };
           # Z.AI provider configuration
-          zai = {
-            api_url = "https://api.z.ai/api/paas/v4/";
-            available_models = [
-              {
-                name = "glm-4.6";
-                display_name = "Z.AI GLM-4.6";
-                max_tokens = 32768;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = false;
-                  prompt_cache_key = false;
-                };
-              }
-              {
-                name = "glm-4.5";
-                display_name = "Z.AI GLM-4.5";
-                max_tokens = 32768;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = false;
-                  prompt_cache_key = false;
-                };
-              }
-              {
-                name = "glm-4.5v";
-                display_name = "Z.AI GLM-4.5V";
-                max_tokens = 32768;
-                capabilities = {
-                  tools = true;
-                  images = true;
-                  parallel_tool_calls = false;
-                  prompt_cache_key = false;
-                };
-              }
-              {
-                name = "glm-4.5-x";
-                display_name = "Z.AI GLM-4.5-X";
-                max_tokens = 32768;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = false;
-                  prompt_cache_key = false;
-                };
-              }
-              {
-                name = "glm-4.5-air";
-                display_name = "Z.AI GLM-4.5-Air";
-                max_tokens = 32768;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = false;
-                  prompt_cache_key = false;
-                };
-              }
-              {
-                name = "glm-4.5-airx";
-                display_name = "Z.AI GLM-4.5-AirX";
-                max_tokens = 32768;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = false;
-                  prompt_cache_key = false;
-                };
-              }
-              {
-                name = "glm-4-32b-0414-128k";
-                display_name = "Z.AI GLM-4-32B-0414-128K";
-                max_tokens = 131072;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = false;
-                  prompt_cache_key = false;
-                };
-              }
-              {
-                name = "glm-4.5-flash";
-                display_name = "Z.AI GLM-4.5-Flash";
-                max_tokens = 32768;
-                capabilities = {
-                  tools = true;
-                  images = false;
-                  parallel_tool_calls = false;
-                  prompt_cache_key = false;
-                };
-              }
-            ];
+          openai_compatible = {
+            "Z.AI" = {
+              api_url = "https://api.z.ai/api/paas/v4/";
+              available_models = [
+                {
+                  name = "glm-4.6";
+                  display_name = "Z.AI GLM-4.6";
+                  max_tokens = 65536;
+                  capabilities = {
+                    tools = true;
+                    images = false;
+                    parallel_tool_calls = false;
+                    prompt_cache_key = false;
+                  };
+                }
+                {
+                  name = "glm-4.5";
+                  display_name = "Z.AI GLM-4.5";
+                  max_tokens = 65536;
+                  capabilities = {
+                    tools = true;
+                    images = false;
+                    parallel_tool_calls = false;
+                    prompt_cache_key = false;
+                  };
+                }
+                {
+                  name = "glm-4.5v";
+                  display_name = "Z.AI GLM-4.5V";
+                  max_tokens = 65536;
+                  capabilities = {
+                    tools = true;
+                    images = true;
+                    parallel_tool_calls = false;
+                    prompt_cache_key = false;
+                  };
+                }
+                {
+                  name = "glm-4.5-x";
+                  display_name = "Z.AI GLM-4.5-X";
+                  max_tokens = 65536;
+                  capabilities = {
+                    tools = true;
+                    images = false;
+                    parallel_tool_calls = false;
+                    prompt_cache_key = false;
+                  };
+                }
+                {
+                  name = "glm-4.5-air";
+                  display_name = "Z.AI GLM-4.5-Air";
+                  max_tokens = 32768;
+                  capabilities = {
+                    tools = false;
+                    images = false;
+                    parallel_tool_calls = false;
+                    prompt_cache_key = false;
+                  };
+                }
+                {
+                  name = "glm-4.5-airx";
+                  display_name = "Z.AI GLM-4.5-AirX";
+                  max_tokens = 32768;
+                  capabilities = {
+                    tools = false;
+                    images = false;
+                    parallel_tool_calls = false;
+                    prompt_cache_key = false;
+                  };
+                }
+                {
+                  name = "glm-4-32b-0414-128k";
+                  display_name = "Z.AI GLM-4-32B-0414-128K";
+                  max_tokens = 131072;
+                  capabilities = {
+                    tools = false;
+                    images = false;
+                    parallel_tool_calls = false;
+                    prompt_cache_key = false;
+                  };
+                }
+                {
+                  name = "glm-4.5-flash";
+                  display_name = "Z.AI GLM-4.5-Flash";
+                  max_tokens = 128000;
+                  capabilities = {
+                    tools = false;
+                    images = false;
+                    parallel_tool_calls = false;
+                    prompt_cache_key = false;
+                  };
+                }
+              ];
+            };
           };
         };
 
