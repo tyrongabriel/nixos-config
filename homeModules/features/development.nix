@@ -17,6 +17,9 @@ in
       enable = true;
       enableZshIntegration = true;
       silent = true;
+      nix-direnv = {
+        enable = true;
+      };
     };
 
     home.packages = with pkgs; [

@@ -6,6 +6,7 @@
   pkgs,
   pkgs-stable,
   myLib,
+  lib,
   ...
 }:
 let
@@ -85,6 +86,11 @@ in
         # https://www.reddit.com/r/Gentoo/comments/181y6mc/i_maybe_messed_up_my_rust_installation_wasm_not/?rdt=50810
         # rustup target add --toolchain stable wasm32-unknown-unknown
         iproute2
+        #comma not when using nix-index
+        kubectl
+        k3s
+        kubernetes-helm
+        k9s
       ])
       ++ (with pkgs-stable; [
         nixd # Nix Language Server
@@ -93,6 +99,21 @@ in
     nixpkgs.config.permittedInsecurePackages = [
       "ventoy-gtk3-1.1.05"
     ];
+
+    programs.nix-index-database.comma.enable = true;
+
+    services.zerotierone = {
+      enable = true;
+      joinNetworks = [ "134dabecc87d8e19" ];
+    };
+    networking.firewall.allowedUDPPorts = lib.mkForce [
+      9993 # ZeroTier default port
+    ];
+    networking.extraHosts = ''
+      # K3s Cluster Dashboard Hostname
+      100.101.134.116 kubernetes-dashboard.tyclan.ts.net
+      100.101.134.116:8080 haproxy.tyclan.ts.net
+    '';
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions

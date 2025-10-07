@@ -76,6 +76,100 @@ in
               }
             ];
           };
+          # Z.AI provider configuration
+          zai = {
+            api_url = "https://api.z.ai/api/paas/v4/";
+            available_models = [
+              {
+                name = "glm-4.6";
+                display_name = "Z.AI GLM-4.6";
+                max_tokens = 32768;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = false;
+                  prompt_cache_key = false;
+                };
+              }
+              {
+                name = "glm-4.5";
+                display_name = "Z.AI GLM-4.5";
+                max_tokens = 32768;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = false;
+                  prompt_cache_key = false;
+                };
+              }
+              {
+                name = "glm-4.5v";
+                display_name = "Z.AI GLM-4.5V";
+                max_tokens = 32768;
+                capabilities = {
+                  tools = true;
+                  images = true;
+                  parallel_tool_calls = false;
+                  prompt_cache_key = false;
+                };
+              }
+              {
+                name = "glm-4.5-x";
+                display_name = "Z.AI GLM-4.5-X";
+                max_tokens = 32768;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = false;
+                  prompt_cache_key = false;
+                };
+              }
+              {
+                name = "glm-4.5-air";
+                display_name = "Z.AI GLM-4.5-Air";
+                max_tokens = 32768;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = false;
+                  prompt_cache_key = false;
+                };
+              }
+              {
+                name = "glm-4.5-airx";
+                display_name = "Z.AI GLM-4.5-AirX";
+                max_tokens = 32768;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = false;
+                  prompt_cache_key = false;
+                };
+              }
+              {
+                name = "glm-4-32b-0414-128k";
+                display_name = "Z.AI GLM-4-32B-0414-128K";
+                max_tokens = 131072;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = false;
+                  prompt_cache_key = false;
+                };
+              }
+              {
+                name = "glm-4.5-flash";
+                display_name = "Z.AI GLM-4.5-Flash";
+                max_tokens = 32768;
+                capabilities = {
+                  tools = true;
+                  images = false;
+                  parallel_tool_calls = false;
+                  prompt_cache_key = false;
+                };
+              }
+            ];
+          };
         };
 
         features = {
@@ -244,6 +338,7 @@ in
                 nixos = {
                   #"expr": "(builtins.getFlake \"/home/tyron/tynix\").nixosConfigurations.\"testvm\".options"
                   expr = "(myFlake: builtins.foldl' (acc: cfgName: acc // (myFlake.nixosConfigurations.\"\${cfgName}\".options or {})) {} (builtins.attrNames myFlake.nixosConfigurations)) (builtins.getFlake (toString ./.))";
+                  #expr = "(let pkgs = import <nixpkgs> { }; in (pkgs.lib.evalModules { modules =  (import <nixpkgs/nixos/modules/module-list.nix>) ++ [ ({...}: { nixpkgs.hostPlatform = builtins.currentSystem;} ) ] ; })).options";
                 };
               };
             };

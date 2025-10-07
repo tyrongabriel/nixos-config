@@ -47,9 +47,11 @@ in
       '';
       shellAliases = {
         ll = "eza -lag --icons";
+        llt = "eza -lag --icons --tree --level 2"; # Specify --level to limit depth
         lah = "eza -lahg --icons";
         fzfb = "fzf --preview='bat --color=always {}'";
         cd = "z";
+        k = "kubectl";
       };
       syntaxHighlighting.enable = lib.mkDefault true;
       oh-my-zsh = {

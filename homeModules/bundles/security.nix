@@ -25,7 +25,7 @@ in
       binwalk # Firmware analysis
       nmap # Network scanner
       #openbsd
-      hydra
+      #hydra
       sqlmap
       socat
       john

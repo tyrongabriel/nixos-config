@@ -43,6 +43,9 @@
     deploy-rs.url = "github:serokell/deploy-rs";
 
     tylib.url = "github:tyrongabriel/tylib";
+
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs =
     {
@@ -53,6 +56,7 @@
       stylix,
       winapps,
       deploy-rs,
+      nix-index-database,
       ...
     }@inputs: # Given as special args inside the modules
     let
@@ -68,6 +72,7 @@
           # Extra modules to be used in the system
           inputs.xremap-flake.nixosModules.default
           inputs.tylib.nixosModules.default
+          inputs.nix-index-database.nixosModules.nix-index
         ];
         typc = mkSystem "x86_64-linux" ./hosts/typc/configuration.nix [
           # Extra modules to be used in the system

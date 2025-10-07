@@ -21,7 +21,7 @@ in
     #};
     programs.mangohud.enable = true;
     home.packages = with pkgs; [
-      lutris
+      #lutris
       steam
       steam-run
       protonup-ng

@@ -13,7 +13,7 @@
 
   hardware.amdgpu = {
     initrd.enable = true;
-    amdvlk.enable = true;
+    #amdvlk.enable = true;
     opencl.enable = true;
   };
 
@@ -28,16 +28,12 @@
       # For Vulkan support, which is often used by games and some apps.
       # The open-source RADV Vulkan driver is part of mesa.drivers
       vulkan-loader
-      amdvlk
+      #amdvlk
 
-    ];
-    # For 32 bit applications
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
     ];
   };
 
-  hardware.opengl.driSupport32Bit = true; # Necessary for 32-bit applications
+  #hardware.opengl.driSupport32Bit = true; # Necessary for 32-bit applications
 
   # Set the environment variable to enable Wayland support for Brave/Chromium.
   environment.sessionVariables = {
