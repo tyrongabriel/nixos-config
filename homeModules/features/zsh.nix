@@ -52,6 +52,22 @@ in
         fzfb = "fzf --preview='bat --color=always {}'";
         cd = "z";
         k = "kubectl";
+        kns = "kubens";
+        kctx = "kubectx";
+        kg = "kubectl get";
+        kgp = "kubectl get pods";
+        kgs = "kubectl get services";
+        kgd = "kubectl get deployments";
+        kgds = "kubectl get deployments -o wide";
+        kgrs = "kubectl get replicasets";
+        kgrss = "kubectl get replicasets -o wide";
+        kgrsp = "kubectl get replicasets -o jsonpath='{.items[*].spec.template.spec.containers[*].image}'";
+        kgrsps = "kubectl get replicasets -o jsonpath='{.items[*].spec.template.spec.containers[*].image}'";
+        kgr = "kubectl get replicasets";
+        kgrp = "kubectl get replicasets -o jsonpath='{.items[*].spec.template.spec.containers[*].image}'";
+        kgrps = "kubectl get replicasets -o jsonpath='{.items[*].spec.template.spec.containers[*].image}'";
+        kgc = "kubectl get configmaps";
+        kgcs = "kubectl get configmaps -o wide";
       };
       syntaxHighlighting.enable = lib.mkDefault true;
       oh-my-zsh = {

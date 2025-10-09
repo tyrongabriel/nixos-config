@@ -88,6 +88,7 @@ in
         iproute2
         #comma not when using nix-index
         kubectl
+        kubectx # Installs kubens
         k3s
         kubernetes-helm
         k9s

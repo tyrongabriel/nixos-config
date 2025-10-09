@@ -35,7 +35,12 @@ in
         "1.0.0.1"
       ];
       dnsovertls = "true";
+      extraConfig = ''
+        DNSOverTLS=opportunistic
+        ReadEtcHosts=yes
+      '';
     };
+    networking.networkmanager.dns = "systemd-resolved";
 
     # Bug: https://github.com/tailscale/tailscale/issues/4254
     #networking.useNetworkd = true;
