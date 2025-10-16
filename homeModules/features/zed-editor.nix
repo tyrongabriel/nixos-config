@@ -61,8 +61,8 @@ in
           enabled = true;
           default_profile = "ask";
           default_model = {
-            provider = "google";
-            model = "gemini-2.5-flash";
+            provider = "copilot_chat";
+            model = "gemini-2.5-pro";
           };
         };
 

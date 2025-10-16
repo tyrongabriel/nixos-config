@@ -100,7 +100,7 @@
     #   HandlePowerKey=poweroff
     # '';
     #lidSwitch = "suspend-then-hibernate";
-    lidSwitch = "poweroff";
+    settings.Login.HandleLidSwitch = "poweroff";
   };
   #systemd.sleep.extraConfig = "HibernateDelaySec=${builtins.toString (60 * 45)}";
 

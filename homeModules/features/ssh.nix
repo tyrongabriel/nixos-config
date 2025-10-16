@@ -16,6 +16,7 @@ in
     home.file.".ssh/config_custom".text = cfg.customConfig;
 
     programs.ssh = {
+      enableDefaultConfig = false;
       includes = [ "~/.ssh/config_custom" ];
       enable = true;
       matchBlocks = {

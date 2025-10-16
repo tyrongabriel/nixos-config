@@ -96,9 +96,12 @@
 
   # Lid behaviour
   services.logind = {
-    extraConfig = ''
-      HandlePowerKey=poweroff
-    '';
+    # extraConfig = ''
+    #   HandlePowerKey=poweroff
+    # '';
+    settings.Login = {
+      HandlePowerKey = "poweroff";
+    };
     #lidSwitch = "suspend-then-hibernate";
     #lidSwitch = "poweroff";
   };
