@@ -44,6 +44,7 @@ in
       ## Content at the very end:
       initContent = mkAfter ''
         unalias gcd 2>/dev/null
+        export PATH="''${KREW_ROOT:-$HOME/.krew}/bin:$PATH" # Needed for kubectl plugins
       '';
       shellAliases = {
         ll = "eza -lag --icons";

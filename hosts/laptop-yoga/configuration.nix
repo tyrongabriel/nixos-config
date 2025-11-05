@@ -51,7 +51,7 @@ in
       userNixosSettings = {
         packages = with pkgs; [
           obsidian
-          jetbrains.idea-ultimate
+          jetbrains.idea-ultimate # At help -> Edit Custom VM Options -> add -Dawt.toolkit.name=WLToolkit
         ];
       };
       #winapps.enable = true; #Could not get it to work
@@ -88,10 +88,12 @@ in
         iproute2
         #comma not when using nix-index
         kubectl
+        krew
         kubectx # Installs kubens
         k3s
         kubernetes-helm
         k9s
+        netbird
       ])
       ++ (with pkgs-stable; [
         nixd # Nix Language Server
@@ -100,6 +102,8 @@ in
     nixpkgs.config.permittedInsecurePackages = [
       "ventoy-gtk3-1.1.05"
     ];
+
+    services.netbird.enable = true;
 
     programs.nix-index-database.comma.enable = true;
 
@@ -115,6 +119,16 @@ in
       100.101.134.116 kubernetes-dashboard.tyclan.ts.net
       100.101.134.116:8080 haproxy.tyclan.ts.net
     '';
+
+    services.openssh = {
+      enable = true;
+      openFirewall = true;
+    };
+    users.users.tyron = {
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEqAq3GCuNXFc8mQL+H/czF0+pOlyQ4c4GILKUcrK0fZ 51530686+tyrongabriel@users.noreply.github.com"
+      ];
+    };
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
