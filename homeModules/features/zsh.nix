@@ -73,7 +73,7 @@ in
       syntaxHighlighting.enable = lib.mkDefault true;
       oh-my-zsh = {
         enable = lib.mkDefault true;
-        theme = "lambda";
+        theme = "frisk"; # "lambda";
         plugins = [
           "git"
           "cp" # Progress bar cp
