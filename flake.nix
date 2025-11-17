@@ -44,6 +44,7 @@
 
     tylib.url = "github:tyrongabriel/tylib";
     crust-cli.url = "github:tyrongabriel/crust-cli";
+    pwndbg.url = "github:pwndbg/pwndbg";
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -75,7 +76,10 @@
           inputs.tylib.nixosModules.default
           inputs.nix-index-database.nixosModules.nix-index
           {
-            environment.systemPackages = [ inputs.crust-cli.packages."x86_64-linux".default ];
+            environment.systemPackages = [
+              inputs.crust-cli.packages."x86_64-linux".default
+              inputs.pwndbg.packages."x86_64-linux".default
+            ];
           }
         ];
         typc = mkSystem "x86_64-linux" ./hosts/typc/configuration.nix [
