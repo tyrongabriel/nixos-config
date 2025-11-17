@@ -67,6 +67,7 @@ in
 
   # Configure myHome manager modules
   myHome = {
+    #openconnect.enable = true;
     winapps.enable = true;
     ssh.customConfig = ''
       Host testbed
@@ -100,7 +101,7 @@ in
       enable = true;
       autostartPrograms = [
         {
-          pkg = pkgs.bitwarden;
+          pkg = pkgs.bitwarden-desktop;
           name = "bitwarden";
         }
         {
@@ -124,7 +125,7 @@ in
     with pkgs;
     [
       discord
-      bitwarden
+      bitwarden-desktop
       nmap
       dig
       signal-desktop
@@ -134,6 +135,7 @@ in
       zoxide
       ripgrep
       zoom-us
+      filezilla
     ]
     ++ (with pkgs-stable; [
       brave

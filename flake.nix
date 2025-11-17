@@ -43,6 +43,7 @@
     deploy-rs.url = "github:serokell/deploy-rs";
 
     tylib.url = "github:tyrongabriel/tylib";
+    crust-cli.url = "github:tyrongabriel/crust-cli";
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -73,6 +74,9 @@
           inputs.xremap-flake.nixosModules.default
           inputs.tylib.nixosModules.default
           inputs.nix-index-database.nixosModules.nix-index
+          {
+            environment.systemPackages = [ inputs.crust-cli.packages."x86_64-linux".default ];
+          }
         ];
         typc = mkSystem "x86_64-linux" ./hosts/typc/configuration.nix [
           # Extra modules to be used in the system

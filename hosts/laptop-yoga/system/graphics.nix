@@ -70,7 +70,6 @@
     libvdpau-va-gl
     libva-utils
     radeontop
-    vaapiVdpau
     egl-wayland
     libGL
     clinfo

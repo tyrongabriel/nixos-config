@@ -94,6 +94,8 @@ in
         kubernetes-helm
         k9s
         netbird
+        openconnect
+        binaryninja-free
       ])
       ++ (with pkgs-stable; [
         nixd # Nix Language Server
@@ -119,6 +121,16 @@ in
       100.101.134.116 kubernetes-dashboard.tyclan.ts.net
       100.101.134.116:8080 haproxy.tyclan.ts.net
     '';
+
+    networking.networkmanager.plugins = with pkgs; [
+      networkmanager-openconnect
+    ];
+
+    programs.wireshark = {
+      enable = true;
+      usbmon.enable = true;
+      dumpcap.enable = true;
+    };
 
     services.openssh = {
       enable = true;

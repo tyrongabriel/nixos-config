@@ -90,7 +90,7 @@ in
       enable = true;
       autostartPrograms = [
         {
-          pkg = pkgs.bitwarden;
+          pkg = pkgs.bitwarden-desktop;
           name = "bitwarden";
         }
         {
@@ -114,7 +114,7 @@ in
     with pkgs;
     [
       discord
-      bitwarden
+      bitwarden-desktop
       nmap
       dig
       signal-desktop

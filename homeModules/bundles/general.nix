@@ -46,7 +46,7 @@ in
       ncdu
       neofetch
       spotify
-      onlyoffice-bin
+      onlyoffice-desktopeditors
       wl-clipboard
       unzip
     ];

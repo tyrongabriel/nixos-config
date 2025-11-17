@@ -67,6 +67,7 @@ in
         "libvirtd"
         "networkmanager"
         "wheel"
+        "wireshark"
       ];
     }
     // cfg.userNixosSettings;
