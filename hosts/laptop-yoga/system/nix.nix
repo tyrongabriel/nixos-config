@@ -52,6 +52,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.android_sdk.accept_license = true; # Needed for android-studio etc.
 
   # NH as an nixos-rebuild alternative
   # May be configured further in home-manager

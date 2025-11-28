@@ -57,27 +57,61 @@ in
       userSettings = {
         load_direnv = "shell_hook";
         agent = {
+          profiles = {
+            none = {
+              name = "None";
+              tools = {
+                thinking = true;
+                web_search = true;
+                copy_path = false;
+              };
+              enable_all_context_servers = false;
+              context_servers = { };
+            };
+          };
           #version = "2";
           enabled = true;
-          default_profile = "ask";
+          default_profile = "none";
           default_model = {
-            provider = "copilot_chat";
-            model = "gemini-2.5-pro";
+            provider = "Cerebras";
+            model = "zai-glm-4.6";
           };
         };
 
         language_models = {
-          # google = {
-          #   available_models = [
-          #     {
-          #       name = "gemini-2.0-flash-latest";
-          #       display_name = "Gemini 2.0 Flash (Latest-Custom)";
-          #       max_tokens = 1000000;
-          #     }
-          #   ];
-          # };
-          # Z.AI provider configuration
+          google = {
+            available_models = [
+              {
+                name = "gemini-3-pro-preview";
+                display_name = "Gemini 3 Pro (Preview)";
+                max_tokens = 1000000;
+                mode = {
+                  type = "thinking";
+                  budget_tokens = 64000;
+                };
+              }
+            ];
+          };
           openai_compatible = {
+            Cerebras = {
+              api_url = "https://api.cerebras.ai/v1";
+              available_models = [
+                {
+                  display_name = "Z.AI:Cerebras GLM-4.6";
+                  name = "zai-glm-4.6";
+                  max_tokens = 131000;
+                  max_output_tokens = 40000;
+                  max_completion_tokens = 200000;
+                  capabilities = {
+                    tools = true;
+                    images = false;
+                    parallel_tool_calls = true;
+                    prompt_cache_key = false;
+
+                  };
+                }
+              ];
+            };
             "Z.AI" = {
               api_url = "https://api.z.ai/api/paas/v4/";
               available_models = [

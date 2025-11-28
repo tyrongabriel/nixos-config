@@ -43,6 +43,8 @@ rec {
         pkgs-stable = import inputs.nixpkgs-stable {
           system = sys;
           config.allowUnfree = true;
+          config.android_sdk.accept_license = true; # Needed for android-studio etc.
+
         };
       };
       modules = [

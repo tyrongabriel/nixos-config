@@ -28,6 +28,7 @@ in
     # use nix run nixpkgs#eza -- --tree --level 3 to list package structure
     # This displays folder structure! nice for fonts etc.
     myNixOS = {
+      android-dev.enable = true;
       tailscale.enable = true;
       devenv.enable = true;
       # Enable gnome desktop
