@@ -106,7 +106,7 @@ in
     environment.variables = {
       # Force Wayland for apps that support it
       MOZ_ENABLE_WAYLAND = "1"; # For Firefox & Mozilla-based apps
-      QT_QPA_PLATFORM = "wayland-egl"; # For Qt apps (Telegram, etc.)
+      #QT_QPA_PLATFORM = "wayland-egl"; # For Qt apps (Telegram, etc.)
       GDK_BACKEND = "wayland"; # For GTK apps
       SDL_VIDEODRIVER = "wayland"; # For SDL-based apps (Games, Emulators)
       CLUTTER_BACKEND = "wayland"; # Clutter-based apps (e.g., some GNOME apps)

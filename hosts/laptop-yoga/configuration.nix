@@ -56,7 +56,7 @@ in
         ];
       };
       #winapps.enable = true; #Could not get it to work
-      klee.enable = true;
+      klee.enable = false;
       qemu.enable = true;
       john-the-ripper.enable = true;
       wireguard.enable = false;
