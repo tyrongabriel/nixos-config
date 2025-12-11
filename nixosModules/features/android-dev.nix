@@ -18,6 +18,7 @@ in
     environment.variables = {
       QT_QPA_PLATFORM = "xcb";
     };
+
     environment.systemPackages = with pkgs; [
       # Full Android Studio IDE (includes most of the SDK and AVD manager)
       # The 'android-studio-full' package includes a pre-composed SDK.

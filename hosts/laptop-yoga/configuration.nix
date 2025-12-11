@@ -97,6 +97,8 @@ in
         netbird
         openconnect
         binaryninja-free
+        rquickshare
+        zotero
       ])
       ++ (with pkgs-stable; [
         nixd # Nix Language Server
@@ -106,6 +108,14 @@ in
       "ventoy-gtk3-1.1.05"
     ];
 
+    # For quickshare
+    services.avahi.enable = true;
+    services.avahi.publish.enable = true;
+    networking.firewall.allowedTCPPorts = [
+      6220
+      6232
+    ]; # Or a range if you find which it uses.
+    # set port 6232 nvim ~/.local/share/dev.mandre.rquickshare/.settings.json
     services.netbird.enable = true;
 
     programs.nix-index-database.comma.enable = true;
@@ -115,6 +125,7 @@ in
       joinNetworks = [ "134dabecc87d8e19" ];
     };
     networking.firewall.allowedUDPPorts = lib.mkForce [
+      5353 # Multicast DNS for quickshare
       9993 # ZeroTier default port
     ];
     networking.extraHosts = ''
