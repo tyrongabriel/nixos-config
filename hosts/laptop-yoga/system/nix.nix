@@ -24,7 +24,7 @@
   # cat /etc/systemd/system/nixos-upgrade.service
   # And run execStart
   system.autoUpgrade = {
-    enable = true;
+    enable = false; # DAMN ANNOYING!
     # path: is ESSENTIAL: Fixed git-repo ownership error when upgrading flake!
     flake = "path:${config.users.users.tyron.home}/nixos-config"; # "path:${outputs.flakePath}"; # inputs.self.outPath; # Points to flake in nix store, readonly lockfile!
     flags = [

@@ -136,6 +136,7 @@ in
       ripgrep
       zoom-us
       filezilla
+      yaak
     ]
     ++ (with pkgs-stable; [
       brave
